@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router'
 <style lang="less">
 #app {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(180deg, #006EFF 0%, #FFFFFF 100%);
 }
 </style>
