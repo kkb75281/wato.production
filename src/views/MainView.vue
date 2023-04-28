@@ -2,7 +2,7 @@
 navBar
 main
     .logo
-        img(src="@/assets/img/wato_logo.png")
+        img(src="@/assets/img/output_sNhDIp.gif")
         h4 We Make Culture
     swiper.mySwiper(:navigation="true" :modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}")
         swiper-slide(v-for="s in slider")
@@ -109,7 +109,7 @@ main {
         line-height: 38px;
 
         img {
-            width: 515px;
+            width: 453px;
         }
     }
 
