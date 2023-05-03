@@ -1,10 +1,20 @@
 <template lang="pug">
 navBar
 main
-    section#youtube
-        //- .video
-        //-     img(src="@/assets/img/example.png")
-    section#section
+    section#archive_video
+        .video
+            img(src="@/assets/img/example.png")
+        .video
+            img(src="@/assets/img/example.png")
+        .video
+            img(src="@/assets/img/example.png")
+        .video
+            img(src="@/assets/img/example.png")
+        .video
+            img(src="@/assets/img/example.png")
+        .video
+            img(src="@/assets/img/example.png")
+    section#archive
         .card_inner
             .card
             .card
@@ -12,7 +22,7 @@ main
             .card
             .card
             .card
-    section#section
+    section#others
         h2 Other works
         .card_inner
             .card
@@ -25,7 +35,26 @@ import { onMounted } from 'vue';
 import navBar from '../components/navBar.vue';
 
 onMounted(() => {
+    let archive = document.getElementById('archive'); 
+    let cards = archive.querySelectorAll('.card_inner .card'); 
+    let youtube = document.getElementById('youtube'); 
+    let videos = document.querySelectorAll('.video');
+    let videosArr = Array.from(videos);
 
+    for(let i=0; i<cards.length; i++) {
+        cards[i].addEventListener('click', () => {
+            youtube.classList.add('show');
+            videos[i].classList.add('show');
+            document.body.style.overflow = "hidden";
+        })
+    }
+    videosArr.forEach((video) => {
+        video.addEventListener('click', () => {
+            video.classList.remove('show');
+            youtube.classList.remove('show');
+            document.body.style.overflow = "unset";
+        })
+    })
 })
 </script>
 
@@ -34,22 +63,49 @@ main {
     position: relative;
     box-sizing: border-box;
 
-    #youtube {
-        position: absolute;
+    #archive_video {
+        position: fixed;
         width: 100%;
         height: 100%;
         z-index: 9999;
-        background: rgba(0,0,0,0.6);
+        display: none;
 
+        &.show {
+            display: block;
+        }
         .video {
             position: relative;
             width: 100%;
             height: 100%;
+            pointer-events: none;
+            display: none;
+
+            &::after {
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+                z-index: -1;
+                pointer-events: all;
+            }
+            &.show {
+                display: block;
+            }
             img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                z-index: 2;
             }
         }
-    }
-    #section {
+    }   
+
+    #archive, #others {
         display: flex;
         flex-wrap: wrap;
         padding: 80px 24px 0px 24px;
