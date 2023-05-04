@@ -1,7 +1,7 @@
 <template lang="pug">
 navBar
 main
-    section#archive_video
+    section#archive-video
         .video
             img(src="@/assets/img/example.png")
         .video
@@ -37,13 +37,13 @@ import navBar from '../components/navBar.vue';
 onMounted(() => {
     let archive = document.getElementById('archive'); 
     let cards = archive.querySelectorAll('.card_inner .card'); 
-    let youtube = document.getElementById('youtube'); 
+    let archiveVideo = document.getElementById('archive-video'); 
     let videos = document.querySelectorAll('.video');
     let videosArr = Array.from(videos);
 
     for(let i=0; i<cards.length; i++) {
         cards[i].addEventListener('click', () => {
-            youtube.classList.add('show');
+            archiveVideo.classList.add('show');
             videos[i].classList.add('show');
             document.body.style.overflow = "hidden";
         })
@@ -51,7 +51,7 @@ onMounted(() => {
     videosArr.forEach((video) => {
         video.addEventListener('click', () => {
             video.classList.remove('show');
-            youtube.classList.remove('show');
+            archiveVideo.classList.remove('show');
             document.body.style.overflow = "unset";
         })
     })
@@ -63,7 +63,7 @@ main {
     position: relative;
     box-sizing: border-box;
 
-    #archive_video {
+    #archive-video {
         position: fixed;
         width: 100%;
         height: 100%;

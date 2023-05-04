@@ -21,20 +21,20 @@ main
         .card
         .card
         .card
-  //- section#section.sticky
-  //-   .film
-  //-     .logo
-  //-       img(src="@/assets/img/film.png")
-  //-     .desc 
-  //-       h2 Film Production
-  //-       p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
-  //-     .card_wrap 
-  //-       .card
-  //-       .card
-  //-       .card
-  //-       .card
-  //-       .card
-  //-       .card
+  section#section.film
+    .logo
+      img(src="@/assets/img/film.png")
+    .desc 
+      h2 Film Production
+      p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
+    .card-wrap 
+      .card-inner
+        .card
+        .card
+        .card
+        .card
+        .card
+        .card
 </template>
 
 <script setup>
@@ -46,40 +46,39 @@ onMounted(() => {
   let musicCardPosition = musicSection.querySelector('.desc h2').getBoundingClientRect().left;
   let musicCardInner = musicSection.querySelector('.card-inner');
   let musicCardInnerWidth = musicCardInner.getBoundingClientRect().width;
+  let musicCardInnerHeight = musicCardInner.getBoundingClientRect().height + 920;
 
-  // console.log()
+  let filmSection = document.querySelector('.film');
+  let filmCardPosition = filmSection.querySelector('.desc h2').getBoundingClientRect().left;
+  let filmCardInner = filmSection.querySelector('.card-inner');
+  let filmCardInnerWidth = filmCardInner.getBoundingClientRect().width;
+
   musicCardInner.style.left = musicCardPosition + 'px';
   musicCardInner.style.width = musicCardInnerWidth + 'px';
+  filmCardInner.style.left = filmCardPosition + 'px';
+  filmCardInner.style.width = filmCardInnerWidth + 'px';
 
   window.addEventListener('mousewheel', (e) => {
     let scrollY = window.scrollY - 20;
     let windowHeight = window.innerHeight / 4;
     let movement = (windowHeight - scrollY)/10;
-    let musicCardTop = musicSection.getBoundingClientRect().top + window.scrollY;
-
-    // console.log(musicCardTop)
-    // console.log(window.scrollY)
-    console.log(movement)
     
     if(scrollY >= windowHeight && (-70 <= movement && movement <= 0)) {
+      console.log(window.screenY)
       musicSection.classList.add('fixed');
+      musicSection.style.transform = 'translate(0%, -50%)';
       musicCardInner.style.transform = 'translateX(' + movement + '%)';
-    } else {
+      filmSection.classList.remove('show');
+    } else if(scrollY < windowHeight) {
       musicSection.classList.remove('fixed');
+      musicSection.style.transform = 'translate(0px, 0px)';
       musicCardInner.style.transform = 'translateX(0%)';
+      filmSection.classList.remove('show');
+    } else if(-70 > movement) {
+      musicSection.classList.remove('fixed');
+      musicSection.style.transform = 'translate(0px, ' + window.innerHeight/2 + 'px)';
+      filmSection.classList.add('show');
     }
-    // else if(scrollY < windowHeight) {
-    //   musicSection.classList.remove('fixed');
-    //   musicCardInner.style.transform = 'translateX(0%)';
-    //   musicCardInner.style.transform = 'translateX(-70%)';
-    //   musicSection.classList.remove('fixed');
-    //   musicSection.style.transform = 'translate(0px, 1060px)';
-    // } else {
-    //   musicCardInner.style.transform = 'translateX(-70%)';
-    //   musicSection.classList.remove('fixed');
-    //   musicSection.style.transform = 'translate(0px, 1060px)';
-    // }
-
   })
 })
 
@@ -89,6 +88,7 @@ onMounted(() => {
 main {
   height: 300vh;
   padding-top: 200px;
+  overflow: hidden;
 
   #section {
     display: flex;
@@ -107,6 +107,7 @@ main {
     }
     &.music {
       width: 100%;
+      margin-bottom: 100px;
       transform: translate(0px, 0px);
 
       &.fixed {
@@ -115,10 +116,55 @@ main {
         top: 50%;
         transform: translateY(-50%);
       }
-      .film {
-        position: sticky;
-        top: 0;
-        padding-bottom: 600px;
+      .card-wrap {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 280px;
+        margin-top: 30px;
+        
+        // &::before {
+        //   position: absolute;
+        //   content: '';
+        //   right: -70px;
+        //   bottom: 70px;
+        //   width: 280px;
+        //   height: 140px;
+        //   background: linear-gradient(180deg, #D9D9D9 0%, #D9D9D9 0.01%, rgba(217, 217, 217, 0.354167) 64.58%, rgba(217, 217, 217, 0) 100%);
+        //   transform: rotate(-90deg);
+        //   z-index: 3;
+        // }
+        .card-inner {
+          position: absolute;
+          top: 0;
+          display: flex;
+          flex-wrap: nowrap;
+          z-index: 2;
+          perspective: 300px;
+          transform-style: preserve-3d;
+
+          .card {
+            width: 280px;
+            height: 280px;
+            background-color: #D9D9D9;
+            margin-right: 24px;
+  
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+
+      }
+    }
+    &.film {
+      width: 100%;
+      margin-top: 1060px;
+      transform: translateY(1000px);
+      // transition: all 1s;
+
+      &.show {
+        transform: translateY(0);
       }
       .card-wrap {
         position: relative;

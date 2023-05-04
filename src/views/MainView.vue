@@ -105,28 +105,35 @@ main {
         padding-top: 66px;
         text-align: center;
         font-weight: 700;
-        font-size: 32px;
+        font-size: 2.3vw;
         line-height: 38px;
 
         img {
-            width: 453px;
+            width: 33vw;
         }
     }
 
     .mySwiper {
         margin-top: 45px;
+        padding-bottom: 400px;
         .swiper-wrapper {
+            width: 100%;
             .swiper-slide {
                 position: relative;
+                width: 100%;
+                
                 img {
                     width: 100%;
+                    height: 780px;
+                    overflow: hidden;
+                    object-fit: fill;
                 }
                 h6 {
                     position: absolute;
                     left: 32px;
                     bottom: 32px;
                     font-weight: 400;
-                    font-size: 24px;
+                    font-size: 1.75vw;
                 }
             }
         }

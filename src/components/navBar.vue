@@ -60,7 +60,7 @@ onMounted(() => {
             top: 20px;
             z-index: 2;
             img {
-                width: 395px;
+                width: 28.5vw;
             }
         }
         .menu {
@@ -77,14 +77,14 @@ onMounted(() => {
                     li {
                         display: inline-block;
                         font-weight: 400;
-                        font-size: 28px;
+                        font-size: 2vw;
                         line-height: 34px;
         
                         &.active {
                             font-weight: 700;
                         }
                         &:last-child {
-                            margin-left: 32px;
+                            margin-left: 3vw;
                         }
                     }
                 }
