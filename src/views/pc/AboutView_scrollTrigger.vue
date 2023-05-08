@@ -40,7 +40,7 @@ main
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { onMounted } from 'vue';
-import navBar from '../components/navBar.vue';
+import navBar from '../../components/navBar.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -39,7 +39,7 @@ main
 
 <script setup>
 import { onMounted } from 'vue';
-import navBar from '../components/navBar.vue';
+import navBar from '../../components/navBar.vue';
 
 onMounted(() => {
   let musicSection = document.querySelector('.music');
@@ -58,27 +58,41 @@ onMounted(() => {
   filmCardInner.style.left = filmCardPosition + 'px';
   filmCardInner.style.width = filmCardInnerWidth + 'px';
 
+  let filmSectionTop = filmSection.getBoundingClientRect().top;
+
+
   window.addEventListener('mousewheel', (e) => {
     let scrollY = window.scrollY - 20;
     let windowHeight = window.innerHeight / 4;
     let movement = (windowHeight - scrollY)/10;
     
     if(scrollY >= windowHeight && (-70 <= movement && movement <= 0)) {
-      console.log(window.screenY)
       musicSection.classList.add('fixed');
       musicSection.style.transform = 'translate(0%, -50%)';
       musicCardInner.style.transform = 'translateX(' + movement + '%)';
-      filmSection.classList.remove('show');
+      // filmSection.classList.remove('show');
+      console.log(movement)
+      filmSection.style.paddingTop = (scrollY - windowHeight)/1.1 + 'px';
     } else if(scrollY < windowHeight) {
       musicSection.classList.remove('fixed');
       musicSection.style.transform = 'translate(0px, 0px)';
       musicCardInner.style.transform = 'translateX(0%)';
-      filmSection.classList.remove('show');
+      // filmSection.classList.remove('show');
     } else if(-70 > movement) {
       musicSection.classList.remove('fixed');
       musicSection.style.transform = 'translate(0px, ' + window.innerHeight/2 + 'px)';
-      filmSection.classList.add('show');
+      // filmSection.classList.add('show');
+      filmSection.style.paddingTop = 0 + 'px';
     }
+
+    // let filmSectionTop = filmSection.getBoundingClientRect().top;
+    // console.log(scrollY, filmSectionTop)
+
+    // if(filmSectionTop <= windowHeight) {
+    //   filmSection.classList.add('fixed');
+    //   filmSection.style.transform = 'translate(0%, -50%)';
+    // }
+    // console.log(windowHeight, filmSectionTop)
   })
 })
 
@@ -159,12 +173,18 @@ main {
     }
     &.film {
       width: 100%;
-      margin-top: 1060px;
+      // margin-top: 1060px;
       transform: translateY(1000px);
       // transition: all 1s;
 
       &.show {
         transform: translateY(0);
+      }
+      &.fixed {
+        position: fixed;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
       }
       .card-wrap {
         position: relative;

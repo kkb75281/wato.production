@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainView from '../views/MainView.vue'
+import MainView from '../views/pc/PcMain.vue'
+import MobileMainView from '../views/mobile/MobileMain.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,12 +11,17 @@ const router = createRouter({
       component: MainView
     },
     {
+      path: '/mhome',
+      name: 'mhome',
+      component: MobileMainView
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/pc/PcAbout.vue')
     },
     {
       path: '/archive',
@@ -23,7 +29,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ArchiveView.vue')
+      component: () => import('../views/pc/PcArchive.vue')
     }
   ]
 })

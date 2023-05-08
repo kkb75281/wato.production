@@ -1,31 +1,32 @@
 <template lang="pug">
-nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
+nav#nav
     .box
         a.title(href="/")
             img(src="@/assets/img/와토로고.svg")
-        .menu 
-            ul
-                a(href="/about")
-                    li.about ABOUT
-                a(href="/archive")
-                    li.archive ARCHIVE
-        .contact(:class='{show: downDiv}')
-            .info_wrap
-                .info
-                    p 
-                    | Contact :
-                    br
-                    | mailto:official@watostudio.com
-                .info
-                    p 
-                    | Youtube :
-                    br
-                    | https://www.youtube.com/@watostudio4035
-                    p 
-                    | Instagram :
-                    br
-                    | @watostudio
-            h5 Built by Skapi
+        .btn(@click="downDiv=!downDiv;")
+            img(src="@/assets/img/와토로고.svg")
+        //-     ul
+        //-         a(href="/about")
+        //-             li.about ABOUT
+        //-         a(href="/archive")
+        //-             li.archive ARCHIVE
+        //- .contact(:class='{show: downDiv}')
+        //-     .info_wrap
+        //-         .info
+        //-             p 
+        //-             | Contact :
+        //-             br
+        //-             | mailto:official@watostudio.com
+        //-         .info
+        //-             p 
+        //-             | Youtube :
+        //-             br
+        //-             | https://www.youtube.com/@watostudio4035
+        //-             p 
+        //-             | Instagram :
+        //-             br
+        //-             | @watostudio
+        //-     h5 Built by Skapi
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';

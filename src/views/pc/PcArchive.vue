@@ -32,7 +32,7 @@ main
 
 <script setup>
 import { onMounted } from 'vue';
-import navBar from '../components/navBar.vue';
+import navBar from '../../components/navBar.vue';
 
 onMounted(() => {
     let archive = document.getElementById('archive'); 
