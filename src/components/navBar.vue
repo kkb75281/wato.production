@@ -5,10 +5,10 @@ nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
             img(src="@/assets/img/와토로고.svg")
         .menu 
             ul
-                a(href="/about")
-                    li.about ABOUT
-                a(href="/archive")
-                    li.archive ARCHIVE
+                li.about
+                    a(href="/about") ABOUT
+                li.archive
+                    a(href="/archive") ARCHIVE
         .contact(:class='{show: downDiv}')
             .info_wrap
                 .info
@@ -72,20 +72,21 @@ onMounted(() => {
             ul {
                 list-style: none;
                 
-                a {
-                    color: #F7F7F7;
-                    li {
-                        display: inline-block;
-                        font-weight: 400;
-                        font-size: 28px;
-                        line-height: 34px;
-        
-                        &.active {
-                            font-weight: 700;
-                        }
-                        &:last-child {
-                            margin-left: 3vw;
-                        }
+                li {
+                    display: inline-block;
+                    font-weight: 400;
+                    font-size: 28px;
+                    line-height: 34px;
+    
+                    &.active {
+                        font-weight: 700;
+                    }
+                    &:last-child {
+                        margin-left: 3vw;
+                    }
+
+                    a {
+                        color: #F7F7F7;
                     }
                 }
             }

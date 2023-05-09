@@ -3,46 +3,36 @@ nav#nav
     .box
         a.title(href="/")
             img(src="@/assets/img/와토로고.svg")
-        .btn(@click="downDiv=!downDiv;")
-            img(src="@/assets/img/와토로고.svg")
-        //-     ul
-        //-         a(href="/about")
-        //-             li.about ABOUT
-        //-         a(href="/archive")
-        //-             li.archive ARCHIVE
-        //- .contact(:class='{show: downDiv}')
-        //-     .info_wrap
-        //-         .info
-        //-             p 
-        //-             | Contact :
-        //-             br
-        //-             | mailto:official@watostudio.com
-        //-         .info
-        //-             p 
-        //-             | Youtube :
-        //-             br
-        //-             | https://www.youtube.com/@watostudio4035
-        //-             p 
-        //-             | Instagram :
-        //-             br
-        //-             | @watostudio
-        //-     h5 Built by Skapi
+        .btn(@click="showMenu=!showMenu;")
+            .circle
+            .circle
+            .circle
+        .menu-wrap(:class='{show: showMenu}')
+            .menu-inner
+                ul.goto
+                    li
+                        a(href="/") ABOUT
+                    li
+                        a(href="/") ARCHIVE
+                ul.icon
+                    li
+                        a(href="/")
+                            img(src="@/assets/img/email.png")
+                    li
+                        a(href="/")
+                            img(src="@/assets/img/insta.png")
+                    li
+                        a(href="/")
+                            img(src="@/assets/img/youtube.png")
+            
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
 
-let downDiv = ref(false);
+let showMenu = ref(false);
 
 onMounted(() => {
-    let about = document.querySelector('.about');
-    let archive = document.querySelector('.archive');
-    let link = document.location.href;
 
-    if(link.includes('about')){
-        about.classList.add('active');
-    } else if(link.includes('archive')) {
-        archive.classList.add('active');
-    }
 })
 </script>
 <style lang="less" scoped>
@@ -57,97 +47,88 @@ onMounted(() => {
 
         .title {
             position: absolute;
-            left: 32px;
-            top: 20px;
+            left: 20px;
+            top: 10px;
             z-index: 2;
             img {
-                width: 28.5vw;
+                width: 200px;
             }
         }
-        .menu {
+        .btn {
             position: absolute;
-            right: 32px;
-            top: 32px;
-            text-align: right;
+            right: 20px;
+            top: 10px;
             z-index: 2;
-            ul {
-                list-style: none;
-                
-                a {
-                    color: #F7F7F7;
-                    li {
-                        display: inline-block;
-                        font-weight: 400;
-                        font-size: 28px;
-                        line-height: 34px;
-        
-                        &.active {
-                            font-weight: 700;
-                        }
-                        &:last-child {
-                            margin-left: 3vw;
-                        }
-                    }
+            .circle {
+                &:last-child {
+                    margin-right: 0;
                 }
-            }
-        }
-        .contact {
-            position: absolute;
-            left: 0;
-            top: -450px;
-            width: 100%;
-            // height: 412px;
-            background: #000;    
-            transition: all 0.3s;
-            font-weight: 400;
-            // font-size: 16px;
-            font-size: 1vw;
-            line-height: 32px;
-            padding: 92px 32px 32px 32px;
-            box-sizing: border-box;
-            
-            &.show {
-                top: 0;
-            }
-            .info_wrap {
-                display: flex;
-                flex-wrap: nowrap;
-                .info {
-                    width: 370px;
-                    height: 268px;
-            
-                    p {
-                        margin-bottom: 23px;
-                    }
-                }
-            }
-            h5 {
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 32px;
-            }
-        }
-    }
-}
 
-@media (max-width: 1375px) {
-    #nav {
-        .box {
-            .title {
-                img {
-                    // width: 28.5vw;
-                }
+                display: inline-block;
+                margin-right: 3px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #fff;
             }
-            .menu {
+        }
+        .menu-wrap {
+            transition: all 0.3s;
+            transform: translateX(100vw);
+            &.show {
+                transform: translateX(0);
+            }
+            .menu-inner {
+                position: relative;
+                width: 100vw;
+                height: 100vh;
+                background: #000;
+                color: #F7F7F7;
+                padding: 80px 20px 40px 20px;
+                box-sizing: border-box;
+                
                 ul {
-                    a {
+                    list-style: none;
+                    &.goto {
                         li {
-                            font-size: 2vw;
+                            font-weight: 400;
+                            font-size: 28px;
+                            line-height: 34px;
+                            margin-bottom: 24px;
+    
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+    
+                            a {
+                                text-decoration: none;
+                                color: #F7F7F7;
+                            }
+                        }
+                    }
+                    &.icon {
+                        position: absolute;
+                        left: 20px;
+                        bottom: 40px;
+    
+                        li {
+                            display: inline-block;
+                            margin-right: 24px;
+    
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                            a {
+                                img {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
                         }
                     }
                 }
             }
-        } 
+        }
     }
 }
 </style>

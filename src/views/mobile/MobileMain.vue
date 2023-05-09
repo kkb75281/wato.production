@@ -101,14 +101,14 @@ main {
     height: 100%;
 
     .logo {
-        padding-top: 66px;
+        padding-top: 80px;
         text-align: center;
         font-weight: 700;
         font-size: 2.3vw;
         line-height: 38px;
 
         img {
-            width: 515px;
+            width: 247px;
         }
     }
 
