@@ -1,31 +1,51 @@
 <template lang="pug">
-nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
-    .box
-        a.title(href="/")
-            img(src="@/assets/img/와토로고.svg")
-        .menu 
-            ul
-                li.about
-                    a(href="/about") ABOUT
-                li.archive
-                    a(href="/archive") ARCHIVE
-        .contact(:class='{show: downDiv}')
-            .info_wrap
-                .info
-                    p 
-                    | Contact :
-                    br
-                    | mailto:official@watostudio.com
-                .info
-                    p 
-                    | Youtube :
-                    br
-                    | https://www.youtube.com/@watostudio4035
-                    p 
-                    | Instagram :
-                    br
-                    | @watostudio
+.top(v-if="$route.name == 'home'")
+    nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
+        .box
+            a.title(href="/")
+                img(src="@/assets/img/와토로고.svg")
+            .menu 
+                ul
+                    li.about
+                        a(href="/about") ABOUT
+                    li.archive
+                        a(href="/archive") ARCHIVE
+    .logo
+        img(src="@/assets/img/output_sNhDIp.gif")
+        h4 We Make Culture
+    .contact(:class='{show: downDiv}')
+        .info-wrap
+            .info
+                p Contact :
+                span mailto:official@watostudio.com
+            .info
+                p Youtube :
+                span https://www.youtube.com/@watostudio4035
+                p Instagram :
+                span @watostudio
             h5 Built by Skapi
+.top-other(v-else)
+    nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
+        .box
+            a.title(href="/")
+                img(src="@/assets/img/와토로고.svg")
+            .menu 
+                ul
+                    li.about
+                        a(href="/about") ABOUT
+                    li.archive
+                        a(href="/archive") ARCHIVE
+            .contact(:class='{show: downDiv}')
+                .info_wrap
+                    .info
+                        p Contact :
+                        span mailto:official@watostudio.com
+                    .info
+                        p Youtube :
+                        span https://www.youtube.com/@watostudio4035
+                        p Instagram :
+                        span @watostudio
+                h5 Built by Skapi
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
@@ -45,109 +65,197 @@ onMounted(() => {
 })
 </script>
 <style lang="less" scoped>
-#nav {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    .box {
-        position: relative;
+.top {
+    position: relative;
 
-        .title {
-            position: absolute;
-            left: 32px;
-            top: 20px;
-            z-index: 2;
-            img {
-                width: 28.5vw;
-            }
-        }
-        .menu {
-            position: absolute;
-            right: 32px;
-            top: 32px;
-            text-align: right;
-            z-index: 2;
-            ul {
-                list-style: none;
-                
-                li {
-                    display: inline-block;
-                    font-weight: 400;
-                    font-size: 28px;
-                    line-height: 34px;
-    
-                    &.active {
-                        font-weight: 700;
-                    }
-                    &:last-child {
-                        margin-left: 3vw;
-                    }
-
-                    a {
-                        color: #F7F7F7;
-                    }
-                }
-            }
-        }
-        .contact {
-            position: absolute;
-            left: 0;
-            top: -450px;
-            width: 100%;
-            // height: 412px;
-            background: #000;    
-            transition: all 0.3s;
-            font-weight: 400;
-            // font-size: 16px;
-            font-size: 1vw;
-            line-height: 32px;
-            padding: 92px 32px 32px 32px;
-            box-sizing: border-box;
-            
-            &.show {
-                top: 0;
-            }
-            .info_wrap {
-                display: flex;
-                flex-wrap: nowrap;
-                .info {
-                    width: 370px;
-                    height: 268px;
-            
-                    p {
-                        margin-bottom: 23px;
-                    }
-                }
-            }
-            h5 {
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 32px;
-            }
-        }
-    }
-}
-
-@media (max-width: 1375px) {
     #nav {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 999;
         .box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 32px;
             .title {
                 img {
-                    // width: 28.5vw;
+                    width: 28.5vw;
                 }
             }
             .menu {
                 ul {
-                    a {
-                        li {
-                            font-size: 2vw;
+                    list-style: none;
+                    
+                    li {
+                        display: inline-block;
+                        font-weight: 400;
+                        font-size: 2.4vw;
+                        line-height: 34px;
+        
+                        &.active {
+                            font-weight: 700;
+                        }
+                        &:last-child {
+                            margin-left: 3vw;
+                        }
+
+                        a {
+                            color: #F7F7F7;
+                            text-decoration: none;
                         }
                     }
                 }
             }
-        } 
+        }
+    }
+    .contact {
+        position: absolute;
+        left: 0;
+        top: -1000px;
+        width: 100%;
+        height: 100%;
+        background: #000;    
+        transition: all 0.3s;
+        font-weight: 400;
+        font-size: 1.5vw;
+        padding: 0 32px;
+        box-sizing: border-box;
+        
+        &.show {
+            top: 0;
+        }
+        .info-wrap {
+            position: relative;
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 8vw 0 0 0;
+
+            .info {
+                margin-right: 12vw;
+
+                p {
+                    padding: 0;
+                    margin-bottom: 8px;
+                }
+                span {
+                    display: block;
+                    padding-bottom: 23px;
+                }
+            }
+            h5 {
+                position: absolute;
+                left: 0px;
+                bottom: 32px;
+                font-weight: 400;
+                font-size: 1.5vw;
+            }
+        }
+    }
+    .logo {
+        padding: 66px 0;
+        text-align: center;
+        font-weight: 700;
+        font-size: 2.3vw;
+        line-height: 38px;
+
+        img {
+            width: 33vw;
+        }
+    }
+}
+.top-other {
+    #nav {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        .box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 32px;
+
+            .title {
+                img {
+                    width: 28.5vw;
+                }
+            }
+            .menu {
+                ul {
+                    list-style: none;
+                    
+                    li {
+                        display: inline-block;
+                        font-weight: 400;
+                        font-size: 2.4vw;
+                        line-height: 34px;
+        
+                        &.active {
+                            font-weight: 700;
+                        }
+                        &:last-child {
+                            margin-left: 3vw;
+                        }
+
+                        a {
+                            color: #F7F7F7;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+            .contact {
+                position: absolute;
+                left: 0;
+                top: -999px;
+                width: 100%;
+                background: #000;    
+                transition: all 0.3s;
+                font-weight: 400;
+                font-size: 1.5vw;
+                padding: 70px 32px 32px 32px;
+                box-sizing: border-box;
+                z-index: -1;
+                
+                &.show {
+                    top: 0;
+                }
+                .info_wrap {
+                    position: relative;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    height: 100%;
+                    box-sizing: border-box;
+                    padding: 3.5vw 0 0 0;
+
+                    .info {
+                        margin-right: 12vw;
+
+                        p {
+                            padding: 0;
+                            margin-bottom: 8px;
+                        }
+                        span {
+                            display: block;
+                            padding-bottom: 23px;
+                        }
+                    }
+                }
+                h5 {
+                    font-weight: 400;
+                    font-size: 1.5vw;
+                    line-height: 32px;
+                    padding-top: 10vw;
+                }
+            }
+        }
     }
 }
 </style>
