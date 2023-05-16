@@ -107,7 +107,8 @@ main {
                 
                 img {
                     width: 100%;
-                    height: 780px;
+                    // height: 780px;
+                    height: 57vw;
                     overflow: hidden;
                     object-fit: cover;
                 }

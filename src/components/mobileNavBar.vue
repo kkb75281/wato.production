@@ -13,7 +13,7 @@ nav#nav
             li
                 a(href="/mabout") ABOUT
             li
-                a(href="/") ARCHIVE
+                a(href="/marchive") ARCHIVE
         ul.icon
             li
                 a(href="/")
