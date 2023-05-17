@@ -258,4 +258,113 @@ onMounted(() => {
         }
     }
 }
+
+@media (min-width: 1440px) {
+    .top {
+        #nav {
+            .box {
+                .title {
+                    img {
+                        width: 395px;
+                    }
+                }
+                .menu {
+                    ul {
+                        li {
+                            font-size: 28px;
+                            line-height: 34px;
+        
+                            &:last-child {
+                                margin-left: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .contact {
+            font-size: 16px;
+            .info-wrap {
+                padding: 92px 0 0 0;
+
+                .info {
+                    margin-right: 114px;
+
+                    p {
+                        margin-bottom: 8px;
+                    }
+                    span {
+                        padding-bottom: 23px;
+                    }
+                }
+                h5 {
+                    font-size: 8px;
+                }
+            }
+        }
+        .logo {
+            padding: 66px 0;
+            font-size: 32px;
+            line-height: 38px;
+
+            img {
+                width: 515px;
+            }
+        }
+    }
+    .top-other {
+        #nav {
+            .box {
+                padding: 15px 32px;
+
+                .title {
+                    img {
+                        width: 395px;
+                    }
+                }
+                .menu {
+                    ul {
+                        li {
+                            font-size: 28px;
+                            line-height: 34px;
+        
+                            &:last-child {
+                                margin-left: 32px;
+                            }
+                        }
+                    }
+                }
+                .contact {
+                    font-size: 16px;
+                    padding: 70px 32px 32px 32px;
+                    
+                    &.show {
+                        top: 0;
+                    }
+                    .info-wrap {
+                        padding: 92px 0 0 0;
+
+                        .info {
+                            margin-right: 114px;
+
+                            p {
+                                margin-bottom: 8px;
+                            }
+                            span {
+                                padding-bottom: 23px;
+                            }
+                        }
+                        h5 {
+                            font-size: 8px;
+                        }
+                    }
+                    h5 {
+                        font-size: 16px;
+                        padding-top: 149px;
+                    }
+                }
+            }
+        }
+    }
+}
 </style>

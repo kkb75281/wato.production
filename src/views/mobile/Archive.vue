@@ -31,7 +31,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 main {
     position: relative;
     width: 100%;

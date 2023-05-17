@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainView from '../views/pc/Main.vue'
 import MobileMainView from '../views/mobile/Main.vue'
+import AboutView from '../views/pc/About.vue'
+import MobileAboutView from '../views/mobile/About.vue'
+import ArchiveView from '../views/pc/Archive.vue'
+import MobileArchiveView from '../views/mobile/Archive.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,45 +12,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MainView
-    },
-    {
-      path: '/mhome',
-      name: 'mhome',
-      component: MobileMainView
+      components: {
+        default: MainView,
+        mobile: MobileMainView
+      }
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/pc/About.vue')
-    },
-    {
-      path: '/mabout',
-      name: 'mabout',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/mobile/About.vue')
+      components: {
+        default: AboutView,
+        mobile: MobileAboutView
+      }
     },
     {
       path: '/archive',
       name: 'archive',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/pc/Archive.vue')
+      components: {
+        default: ArchiveView,
+        mobile: MobileArchiveView
+      }
     },
-    {
-      path: '/marchive',
-      name: 'marchive',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/mobile/Archive.vue')
-    }
   ]
 })
 

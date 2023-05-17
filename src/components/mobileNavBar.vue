@@ -1,7 +1,7 @@
 <template lang="pug">
 nav#nav
     .nav-inner
-        a.title(href="/")
+        a.title(href="/mhome")
             img(src="@/assets/img/와토로고.svg")
         .btn(@click="showMenu=!showMenu;")
             .circle
