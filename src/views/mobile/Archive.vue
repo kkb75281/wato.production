@@ -5,11 +5,21 @@ main
         .card-wrap 
             .card-inner
                 .card
+                    img(src="src/assets/img/cut01.png")
                 .card
+                    img(src="src/assets/img/cut02.png")
                 .card
+                    img(src="src/assets/img/cut03.png")
                 .card
+                    img(src="src/assets/img/cut04.png")
                 .card
+                    img(src="src/assets/img/cut05.png")
                 .card
+                    img(src="src/assets/img/cut06.png")
+                .card
+                    img(src="src/assets/img/cut07.png")
+                .card
+                    img(src="src/assets/img/cut08.png")
     section#section.others
         h2 Other works
         .card-wrap 
@@ -67,6 +77,11 @@ main {
 
                     &:last-child {
                         margin-bottom: 0;
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
                     }
                 }
             }

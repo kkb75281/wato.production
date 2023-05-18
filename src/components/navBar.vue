@@ -36,7 +36,7 @@
                     li.archive
                         a(href="/archive") ARCHIVE
             .contact(:class='{show: downDiv}')
-                .info_wrap
+                .info-wrap
                     .info
                         p Contact :
                         span mailto:official@watostudio.com
@@ -227,13 +227,13 @@ onMounted(() => {
                 &.show {
                     top: 0;
                 }
-                .info_wrap {
+                .info-wrap {
                     position: relative;
                     display: flex;
                     flex-wrap: nowrap;
                     height: 100%;
                     box-sizing: border-box;
-                    padding: 3.5vw 0 0 0;
+                    padding: 1.2vw 0 0 0;
 
                     .info {
                         margin-right: 12vw;
@@ -342,7 +342,7 @@ onMounted(() => {
                         top: 0;
                     }
                     .info-wrap {
-                        padding: 92px 0 0 0;
+                        padding: 23px 0 0 0;
 
                         .info {
                             margin-right: 114px;
