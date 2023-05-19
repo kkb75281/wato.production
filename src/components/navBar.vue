@@ -1,6 +1,6 @@
 <template lang="pug">
-.top(v-if="$route.name == 'home'")
-    nav#nav(@mouseover="downDiv=true;" @mouseout="downDiv=false;")
+.top(v-if="$route.name == 'home'" @mouseout="downDiv=false;")
+    nav#nav(@mouseover="downDiv=true;")
         .box
             a.title(href="/")
                 img(src="@/assets/img/와토로고.svg")
@@ -298,7 +298,7 @@ onMounted(() => {
                     }
                 }
                 h5 {
-                    font-size: 8px;
+                    font-size: 16px;
                 }
             }
         }

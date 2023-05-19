@@ -23,6 +23,13 @@ main
                     .card
                     .card
                     .card
+                //- .card-blur
+                //-     div
+                //-     div
+                //-     div
+                //-     div
+                //-     div
+                //-     div
     section#section.film
         .logo
             img(src="@/assets/img/film.png")
@@ -141,7 +148,7 @@ main {
         }
         &.wato {
             align-items: center;
-            margin-bottom: 300px;
+            margin-bottom: 15vw;
 
             .logo {
                 img {
@@ -153,7 +160,7 @@ main {
         &.music, &.film {
             width: 100%;
             height: 100%;
-            margin-bottom: 100px;
+            margin-bottom: 5vw;
             transform: translate(0px, 0px);
 
             &.fixed {
@@ -175,8 +182,6 @@ main {
                         display: flex;
                         flex-wrap: nowrap;
                         z-index: 2;
-                        perspective: 300px;
-                        transform-style: preserve-3d;
 
                         .card {
                             width: 20vw;
@@ -189,7 +194,27 @@ main {
                             }
                         }
                     }
+                    .card-blur {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 280px;
+                        height: 100%;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        z-index: 3;
 
+                        div {
+                            backdrop-filter: blur(1px);
+                            mask: linear-gradient(
+                                to bottom,
+                                rgba(0, 0, 0, 0) 12.5%,
+                                rgba(0, 0, 0, 1) 25%,
+                                rgba(0, 0, 0, 1) 37.5%,
+                                rgba(0, 0, 0, 0) 50%
+                            );
+                        }
+                    }
                 }
             }
         }
