@@ -2,43 +2,60 @@
 main
     mobileNavBar
     section#section.archive
-        .card-wrap 
-            .card-inner
-                .card
-                    img(src="src/assets/img/cut01.png")
-                .card
-                    img(src="src/assets/img/cut02.png")
-                .card
-                    img(src="src/assets/img/cut03.png")
-                .card
-                    img(src="src/assets/img/cut04.png")
-                .card
-                    img(src="src/assets/img/cut05.png")
-                .card
-                    img(src="src/assets/img/cut06.png")
-                .card
-                    img(src="src/assets/img/cut07.png")
-                .card
-                    img(src="src/assets/img/cut08.png")
+        ul
+            li(v-for="a in archives" @click="modalShowControl")
+                img(:src = "a.img")
     section#section.others
         h2 Other works
-        .card-wrap 
-            .card-inner
-                .card
-                .card
-                .card
-                .card
-                .card
-                .card
+        ul
+            li(v-for="o in others" @click="modalShowControl")
+                    img(:src = "o.img")
+    .archive-modal-wrap(:class="{show: modalShow}")
+        .archive-modal-bg(@click="modalHideControl")
+        .archive-modal
+            img(src="@/assets/img/example.png")
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref } from 'vue';
 import mobileNavBar from '../../components/mobileNavBar.vue';
 
-onMounted(() => {
+let modalShow = ref(false);
 
-})
+let archives = [
+    { img : 'src/assets/img/cut01.png' },
+    { img : 'src/assets/img/cut02.png' },
+    { img : 'src/assets/img/cut03.png' },
+    { img : 'src/assets/img/cut04.png' },
+    { img : 'src/assets/img/cut05.png' },
+    { img : 'src/assets/img/cut06.png' },
+    { img : 'src/assets/img/cut07.png' },
+    { img : 'src/assets/img/cut08.png' },
+    { img : 'src/assets/img/cut09.png' },
+    { img : 'src/assets/img/cut10.png' },
+    { img : 'src/assets/img/cut11.png' },
+]
+
+let others = [
+    { img : 'src/assets/img/cut12.png' },
+    { img : 'src/assets/img/cut13.png' },
+    { img : 'src/assets/img/cut14.png' },
+    { img : 'src/assets/img/cut15.png' },
+    { img : 'src/assets/img/cut16.png' },
+    { img : 'src/assets/img/cut17.png' },
+    { img : 'src/assets/img/cut18.png' },
+    { img : 'src/assets/img/cut19.png' },
+]
+
+function modalShowControl() {
+    modalShow.value = true;
+    document.querySelector('body').style.overflow = 'hidden';
+}
+
+function modalHideControl() {
+    modalShow.value = false;
+    document.querySelector('body').style.removeProperty('overflow');
+}
 </script>
 
 <style lang="less" scoped>
@@ -46,122 +63,84 @@ main {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-
+    
     #section {
         padding: 0 20px;
         margin-bottom: 13vw;
 
-        // &:last-child {
-        //     margin-bottom: 0;
-        // }
-        &.archive {
-            padding-top: 20vw;
-        }
         h2 {
+            font-weight: 700;
             font-size: 7.2vw;
             margin-bottom: 2vw;
-            font-weight: 700;
         }
-        .card-wrap  {
-            .card-inner {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
+        ul {
+            width: 100%;
+            height: 100%;
+            text-align: center;
 
-                .card {
-                    width: 350px;
-                    height: 350px;
-                    background: #D9D9D9;
-                    margin-bottom: 30px;
+            li {
+                position: relative;
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 4%;
+                background-color: #d9d9d9;
+                box-sizing: border-box;
+                cursor: pointer;
 
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
+                &::after {
+                    content: '';
+                    display: block;
+                    padding-bottom: 100%;
                 }
+                img {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+        &.archive {
+            padding-top: 80px;
+        }
+    }
+
+    .archive-modal-wrap {
+        position: fixed;
+        left: 0;
+        top: -99999px;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999999;
+
+        &.show {
+            top: 0;
+        }
+        .archive-modal-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            cursor: pointer;
+            z-index: 1;
+        }
+        .archive-modal {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+            img {
+                width: 100%;
             }
         }
     }
 }
-// main {
-//     position: relative;
-//     box-sizing: border-box;
-
-//     #archive-video {
-//         position: fixed;
-//         width: 100%;
-//         height: 100%;
-//         z-index: 9999;
-//         display: none;
-
-//         &.show {
-//             display: block;
-//         }
-//         .video {
-//             position: relative;
-//             width: 100%;
-//             height: 100%;
-//             pointer-events: none;
-//             display: none;
-
-//             &::after {
-//                 position: absolute;
-//                 content: '';
-//                 left: 0;
-//                 top: 0;
-//                 width: 100%;
-//                 height: 100%;
-//                 background: rgba(0,0,0,0.6);
-//                 z-index: -1;
-//                 pointer-events: all;
-//             }
-//             &.show {
-//                 display: block;
-//             }
-//             img {
-//                 position: absolute;
-//                 left: 50%;
-//                 top: 50%;
-//                 transform: translate(-50%, -50%);
-//                 width: 100%;
-//                 z-index: 2;
-//             }
-//         }
-//     }   
-
-//     #archive, #others {
-//         display: flex;
-//         flex-wrap: wrap;
-//         padding: 80px 24px 0px 24px;
-        
-//         h2 {
-//             width: 100%;
-//             font-weight: 700;
-//             font-size: 32px;
-//             margin-top: 110px;
-//             margin-bottom: 30px;
-//         }
-//         .card_inner {
-//             width: 100%;
-//             margin: 0 auto;
-//             display: flex;
-//             justify-content: space-between;
-//             flex-wrap: wrap;
-
-//             .card {
-//                 width: 19%;
-//                 padding-bottom: 19%;
-//                 background-color: #D9D9D9;
-//                 margin-bottom: 20px;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-// }
 </style>
     

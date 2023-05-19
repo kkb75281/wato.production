@@ -121,6 +121,27 @@ main {
                 }
             }
         }
+        .swiper-button-next {
+            width: 90px;
+            background: url(@/assets/img/next-arrow.png) no-repeat;
+            background-size: 50% auto;
+            background-position: center center;
+            
+            &::after {
+                display: none;
+            }
+        }
+    
+        .swiper-button-prev {
+            width: 90px;
+            background: url(@/assets/img/prev-arrow.png) no-repeat;
+            background-size: 50% auto;
+            background-position: center center;
+    
+            &::after {
+                display: none;
+            }
+        }
     }
 }
 </style>

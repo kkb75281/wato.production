@@ -2,61 +2,60 @@
 main
     navBar
     section#section.archive
-        //- ul(v-for="a in archive")
-        //-     li
-        //-         img(:src = "a.cover")
         ul
-            li
-            li
-            li
-            li
-            li
-            li
-            li
-            li
+            li(v-for="a in archives" @click="modalShowControl")
+                img(:src = "a.img")
     section#section.others
         h2 Other works
         ul
-            li
-            li
-            li
-            li
-            li
-            li
-            li
-            li
-    .archive-modal-wrap
-        .archive-modal-inner 
-            .archive-modal
-                img(src="@/assets/img/example.png")
+            li(v-for="o in others" @click="modalShowControl")
+                    img(:src = "o.img")
+    .archive-modal-wrap(:class="{show: modalShow}")
+        .archive-modal-bg(@click="modalHideControl")
+        .archive-modal
+            img(src="@/assets/img/example.png")
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref } from 'vue';
 import navBar from '../../components/navBar.vue';
 
-let youtube = [
-    { link : 'src/assets/img/cut01.png' },
-    { link : 'src/assets/img/cut02.png' },
-    { link : 'src/assets/img/cut03.png' },
-    { link : 'src/assets/img/cut04.png' },
-    { link : 'src/assets/img/cut05.png' },
-    { link : 'src/assets/img/cut06.png' },
-    { link : 'src/assets/img/cut07.png' },
-    { link : 'src/assets/img/cut08.png' },
+let modalShow = ref(false);
+
+let archives = [
+    { img : 'src/assets/img/cut01.png' },
+    { img : 'src/assets/img/cut02.png' },
+    { img : 'src/assets/img/cut03.png' },
+    { img : 'src/assets/img/cut04.png' },
+    { img : 'src/assets/img/cut05.png' },
+    { img : 'src/assets/img/cut06.png' },
+    { img : 'src/assets/img/cut07.png' },
+    { img : 'src/assets/img/cut08.png' },
+    { img : 'src/assets/img/cut09.png' },
+    { img : 'src/assets/img/cut10.png' },
+    { img : 'src/assets/img/cut11.png' },
 ]
 
-onMounted(() => {
-    let archive = document.querySelector('.archive');
-    let archiveCard = document.querySelectorAll('.archive ul li');
-    let archievModal = document.querySelector('.archive-modal-wrap');
+let others = [
+    { img : 'src/assets/img/cut12.png' },
+    { img : 'src/assets/img/cut13.png' },
+    { img : 'src/assets/img/cut14.png' },
+    { img : 'src/assets/img/cut15.png' },
+    { img : 'src/assets/img/cut16.png' },
+    { img : 'src/assets/img/cut17.png' },
+    { img : 'src/assets/img/cut18.png' },
+    { img : 'src/assets/img/cut19.png' },
+]
 
-    archiveCard.forEach((card) => {
-        card.addEventListener('click', () => {
-            archievModal.classList.add('show');
-        })
-    })
-})
+function modalShowControl() {
+    modalShow.value = true;
+    document.querySelector('body').style.overflow = 'hidden';
+}
+
+function modalHideControl() {
+    modalShow.value = false;
+    document.querySelector('body').style.removeProperty('overflow');
+}
 </script>
 
 <style lang="less" scoped>
@@ -80,74 +79,39 @@ main {
             text-align: center;
 
             li {
+                position: relative;
                 display: inline-block;
                 width: 32%;
                 margin-right: 2%;
                 margin-bottom: 2%;
                 background-color: #d9d9d9;
                 box-sizing: border-box;
+                transition: all 0.3s;
                 cursor: pointer;
 
                 &::after {
                     content: '';
                     display: block;
                     padding-bottom: 100%;
-                    // background-image: url(src/assets/img/cut08.png);
-                    background-size: cover;
-                    background-position: center;
                 }
                 &:nth-child(3n+3) {
                     margin-right: 0;
+                }
+                &:hover {
+                    scale: 0.98;
+                }
+                img {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }
         &.archive {
             padding-top: 5.5vw;
-
-            ul {
-                li {
-                    &:nth-child(1) {
-                        &::after {
-                            background-image: url(src/assets/img/cut01.png);
-                        }
-                    }
-                    &:nth-child(2) {
-                        &::after {
-                            background-image: url(src/assets/img/cut02.png);
-                        }
-                    }
-                    &:nth-child(3) {
-                        &::after {
-                            background-image: url(src/assets/img/cut03.png);
-                        }
-                    }
-                    &:nth-child(4) {
-                        &::after {
-                            background-image: url(src/assets/img/cut04.png);
-                        }
-                    }
-                    &:nth-child(5) {
-                        &::after {
-                            background-image: url(src/assets/img/cut05.png);
-                        }
-                    }
-                    &:nth-child(6) {
-                        &::after {
-                            background-image: url(src/assets/img/cut06.png);
-                        }
-                    }
-                    &:nth-child(7) {
-                        &::after {
-                            background-image: url(src/assets/img/cut07.png);
-                        }
-                    }
-                    &:nth-child(8) {
-                        &::after {
-                            background-image: url(src/assets/img/cut08.png);
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -155,26 +119,33 @@ main {
         position: fixed;
         left: 0;
         top: -99999px;
-        min-height: 100%;
-        width: 100%;
-        z-index: 50000000000;
-        text-align: center;
-        background: rgba(0,0,0,0.6);
+        width: 100vw;
+        height: 100vh;
+        z-index: 999999;
 
         &.show {
             top: 0;
         }
-        .archive-modal-inner {
+        .archive-modal-bg {
             position: absolute;
-            margin: 0 auto;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 0;
+            top: 0;
             width: 100%;
-            .archive-modal {
-                img {
-                    width: 100%;
-                }
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            cursor: pointer;
+            z-index: 1;
+        }
+        .archive-modal {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+            img {
+                width: 100%;
             }
         }
     }
@@ -183,7 +154,9 @@ main {
 @media (max-width: 900px) {
     main {
         #section {
-            padding-top: 50px;
+            &.archive {
+                padding-top: 50px;
+            }
 
             ul {
                 li {
@@ -203,6 +176,11 @@ main {
                 }
             }
         }
+        .archive-modal-wrap {
+            .archive-modal {
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -212,7 +190,7 @@ main {
             padding: 0 30px 0 30px;
             margin-bottom: 112px;
 
-            &.archiev {
+            &.archive {
                 padding-top: 70px;
             }
             h2 {
