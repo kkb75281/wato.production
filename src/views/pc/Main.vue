@@ -99,6 +99,7 @@ main {
     height: 100%;
 
     .mySwiper {
+        padding-bottom: 20vw;
         .swiper-wrapper {
             width: 100%;
             .swiper-slide {

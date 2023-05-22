@@ -9,26 +9,39 @@ import { RouterView } from 'vue-router'
 
 let isMobile = ref(false);
 
-function onResize() {
-  // isMobile.value = window.innerWidth < 600;
-  if(window.innerWidth < 600) {
-    isMobile.value = true;
-    console.log(isMobile.value)
-  } else {
+if (window.matchMedia("(min-width: 600px)").matches) {
+  isMobile.value = false;
+} else {
+  isMobile.value = true;
+}
+
+// function onResize() {
+//   if(window.innerWidth < 600) {
+//     isMobile.value = true;
+//     // console.log(isMobile.value)
+//   } else {
+//     isMobile.value = false;
+//     // console.log(isMobile.value)
+//   }
+// }
+
+function mediaCheck() {
+  if (window.matchMedia("(min-width: 600px)").matches) {
     isMobile.value = false;
-    console.log(isMobile.value)
+  } else {
+    isMobile.value = true;
   }
 }
 
 onBeforeMount(() => {
   if (typeof window !== 'undefined') {
-    window.removeEventListener('resize', onResize, { passive: true });
+    window.removeEventListener('resize', mediaCheck, { passive: true });
   }
 })
 
 onMounted(() => {
-  onResize();
-  window.addEventListener('resize', onResize, { passive: true });
+  mediaCheck();
+  window.addEventListener('resize', mediaCheck, { passive: true });
 })
 </script>
 

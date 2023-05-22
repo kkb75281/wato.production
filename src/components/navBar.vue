@@ -1,5 +1,5 @@
 <template lang="pug">
-.top(v-if="$route.name == 'home'" @mouseout="downDiv=false;")
+.top(v-if="$route.name == 'home'" @mouseleave="downDiv=false;")
     nav#nav(@mouseover="downDiv=true;")
         .box
             a.title(href="/")
@@ -115,6 +115,7 @@ onMounted(() => {
         position: absolute;
         left: 0;
         top: -1000px;
+        // top: 0;
         width: 100%;
         height: 100%;
         background: #000;    

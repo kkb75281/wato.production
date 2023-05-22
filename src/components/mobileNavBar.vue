@@ -1,39 +1,35 @@
 <template lang="pug">
 nav#nav
     .nav-inner
-        a.title(href="/mhome")
+        a.title(href="/")
             img(src="@/assets/img/와토로고.svg")
         .btn(@click="showMenu=!showMenu;")
             .circle
             .circle
             .circle
-.menu-wrap(:class='{show: showMenu}')
+.menu-wrap(v-if="showMenu == true")
     .menu-inner
         ul.goto
             li
-                a(href="/mabout") ABOUT
+                a(href="/about") ABOUT
             li
-                a(href="/marchive") ARCHIVE
+                a(href="/archive") ARCHIVE
         ul.icon
             li
-                a(href="/")
+                a(href="mailto:official@watostudio.com")
                     img(src="@/assets/img/email.png")
             li
-                a(href="/")
+                a(href="https://www.instagram.com/watostudio/" target='_blank')
                     img(src="@/assets/img/insta.png")
             li
-                a(href="/")
+                a(href="https://www.youtube.com/@watostudio4035" target='_blank')
                     img(src="@/assets/img/youtube.png")
             
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 let showMenu = ref(false);
-
-onMounted(() => {
-
-})
 </script>
 <style lang="less" scoped>
 #nav {
@@ -72,15 +68,15 @@ onMounted(() => {
 }
 .menu-wrap {
     position: absolute;
-    right: -100vw;
+    right: 0;
     top: 0;
     width: 100vw;
     height: 100%;
     z-index: 99;
     transition: all 0.3s;
-    &.show {
-        right: 0;
-    }
+    // &.show {
+    //     right: 0;
+    // }
     .menu-inner {
         position: relative;
         width: 100vw;

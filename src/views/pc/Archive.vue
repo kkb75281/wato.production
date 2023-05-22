@@ -21,6 +21,7 @@ import { ref } from 'vue';
 import navBar from '../../components/navBar.vue';
 
 let modalShow = ref(false);
+let scrollPosition = 0;
 
 let archives = [
     { img : 'src/assets/img/cut01.png' },
@@ -49,12 +50,20 @@ let others = [
 
 function modalShowControl() {
     modalShow.value = true;
-    document.querySelector('body').style.overflow = 'hidden';
+    scrollPosition = window.pageYOffset;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = '100%';
 }
 
 function modalHideControl() {
     modalShow.value = false;
-    document.querySelector('body').style.removeProperty('overflow');
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('top');
+    document.body.style.removeProperty('width');
+    window.scrollTo(0, scrollPosition);
 }
 </script>
 
