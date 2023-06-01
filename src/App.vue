@@ -9,11 +9,11 @@ import { RouterView } from 'vue-router'
 
 let isMobile = ref(false);
 
-if (window.matchMedia("(min-width: 600px)").matches) {
-  isMobile.value = false;
-} else {
-  isMobile.value = true;
-}
+// if (window.matchMedia("(min-width: 600px)").matches) {
+//   isMobile.value = false;
+// } else {
+//   isMobile.value = true;
+// }
 
 // function onResize() {
 //   if(window.innerWidth < 600) {

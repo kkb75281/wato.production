@@ -8,6 +8,21 @@ main
             .desc 
                 h2 We Make Culture
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asdasd asodjpaosjd pa osjdpao sjdpao sjd paosjd paosj dp oajsd poaj sdpojaspdoja spdjas pd ojaposd japs dasdpao js dpoa jsdpo ajsdpojasp dojasp odjapsodj pao sjdaopsdj apsod jpaosjdp oasj dp oasjdp oasj dpaos jdpoasjdpo asjdp oasjdpoa jsdop ajsdpoas jdpo asj dpaosjd poasjd paosjdpoa sjdp oa sjdpdo aisd hjo aishdo ias hjdoia sjd.
+    section#section.film
+        .logo
+            img(src="@/assets/img/film.png")
+        .cont
+            .desc 
+                h2 Film Production
+                p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
+            .card-wrap 
+                .card-inner
+                    .card
+                    .card
+                    .card
+                    .card
+                    .card
+                    .card
     section#section.music
         .logo
             img(src="@/assets/img/music.png")
@@ -23,83 +38,105 @@ main
                     .card
                     .card
                     .card
-                //- .card-blur
-                //-     div
-                //-     div
-                //-     div
-                //-     div
-                //-     div
-                //-     div
-    section#section.film
-        .logo
-            img(src="@/assets/img/film.png")
-        .cont
-            .desc 
-                h2 Music Production
-                p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
-            .card-wrap 
-                .card-inner
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted, nextTick } from 'vue';
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import navBar from '../../components/navBar.vue';
 
+let animation1, animation2, scrollTrigger1, scrollTrigger2 = null;
+
+let x = 'hello';
+
 gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
-    let music = document.querySelector('.music');
-    let musicCardInner = music.querySelector('.card-inner');
-    let cardInnerRight = music.querySelector('.desc p').getBoundingClientRect().right;
-    let cardInnerPosition = window.innerWidth - cardInnerRight;
+    function cardMove() {
+        console.log('dddd')
+        console.log(x);
+        nextTick().then(() => {
+            let music = document.querySelector('.music');
+            let musicCardInner = music.querySelector('.card-inner');
+            let cardInnerRight = music.querySelector('.desc p').getBoundingClientRect().right;
+            let cardInnerPosition = window.innerWidth - cardInnerRight;
+            let film = document.querySelector('.film');
+            let filmCardInner = film.querySelector('.card-inner');
 
-    console.log(cardInnerRight)
+            x = 'my'
+            console.log(x);
 
-    gsap.to(musicCardInner, {
-        scrollTrigger: {
-            scrub: true,
-            trigger: music,
-            pin: true,
-            // markers: true,
-            start: "center center",
-            end: function(){  
-                return "+=" + music.scrollWidth;
-            },
-        },
-        x: function(){  
-            return -(music.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
-        },
-        ease: "none"
-    })
+            animation2 = gsap.to(filmCardInner, {
+                x: function () {
+                    return -(film.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
+                },
+                ease: "none"
+            });
 
-    let film = document.querySelector('.film');
-    let filmCardInner = film.querySelector('.card-inner');
+            scrollTrigger2 = ScrollTrigger.create({
+                scrub: true,
+                animation: animation2,
+                trigger: film,
+                pin: true,
+                start: "center center",
+                end: function () {
+                    return "+=" + film.scrollWidth;
+                }
+            });
 
-    gsap.to(filmCardInner, {
-        scrollTrigger: {
-            scrub: true,
-            trigger: film,
-            pin: true,
-            markers: true,
-            start: "center center",
-            end: function(){  
-                return "+=" + film.scrollWidth;
-            },
-        },
-        x: function(){  
-            return -(film.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
-        },
-        ease: "none"
-    })
+            animation1 = gsap.to(musicCardInner, {
+                x: function () {
+                    return -(music.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
+                },
+                ease: "none"
+            });
+
+            console.log(animation1)
+
+            scrollTrigger1 = ScrollTrigger.create({
+                scrub: true,
+                animation: animation1,
+                trigger: music,
+                pin: true,
+                start: "center center",
+                end: function () {
+                    return "+=" + music.scrollWidth;
+                }
+            });
+        });
+    }
+
+    console.log(animation1)
+
+    if (window.matchMedia('(min-width: 600px)').matches) {
+        cardMove();
+    }
+
+    window.matchMedia('(min-width: 600px)').addEventListener('change', (e) => {
+        if (e.matches) {
+            cardMove();
+        } else {
+            // console.log(JSON.stringify(animation1))
+            console.log(x);
+            scrollTrigger1.kill();
+            scrollTrigger2.kill();
+            animation1.kill();
+            animation2.kill();
+            animation1 = null;
+            animation2 = null;
+        }
+    });
 })
+
+onUnmounted(() => {
+    scrollTrigger1.kill();
+    scrollTrigger2.kill();
+    animation1.kill();
+    animation2.kill();
+    animation1 = null;
+    animation2 = null;
+});
 </script>
 
 <style lang="less" scoped>
@@ -125,6 +162,7 @@ main {
                 width: 28vw;
             }
         }
+
         .cont {
             width: 55%;
 
@@ -146,6 +184,7 @@ main {
                 }
             }
         }
+
         &.wato {
             align-items: center;
             margin-bottom: 15vw;
@@ -157,7 +196,8 @@ main {
             }
         }
 
-        &.music, &.film {
+        &.music,
+        &.film {
             width: 100%;
             height: 100%;
             margin-bottom: 5vw;
@@ -169,6 +209,7 @@ main {
                 top: 50%;
                 transform: translateY(-50%);
             }
+
             .cont {
                 .card-wrap {
                     position: relative;
@@ -194,33 +235,12 @@ main {
                             }
                         }
                     }
-                    .card-blur {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        width: 280px;
-                        height: 100%;
-                        display: flex;
-                        flex-wrap: nowrap;
-                        z-index: 3;
-
-                        div {
-                            backdrop-filter: blur(1px);
-                            mask: linear-gradient(
-                                to bottom,
-                                rgba(0, 0, 0, 0) 12.5%,
-                                rgba(0, 0, 0, 1) 25%,
-                                rgba(0, 0, 0, 1) 37.5%,
-                                rgba(0, 0, 0, 0) 50%
-                            );
-                        }
-                    }
                 }
             }
         }
 
         &.film {
-            margin-bottom: 0;
+            // margin-bottom: 0;
         }
     }
 }
@@ -235,6 +255,7 @@ main {
                     width: 400px;
                 }
             }
+
             .cont {
                 .desc {
                     h2 {
@@ -250,6 +271,7 @@ main {
                     }
                 }
             }
+
             &.wato {
                 margin-bottom: 300px;
 
@@ -260,7 +282,8 @@ main {
                 }
             }
 
-            &.music, &.film {
+            &.music,
+            &.film {
                 margin-bottom: 100px;
 
                 .cont {

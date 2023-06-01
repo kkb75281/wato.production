@@ -17,7 +17,7 @@
         .info-wrap
             .info
                 p Contact :
-                span mailto:official@watostudio.com
+                span wato@watostudio.com
             .info
                 p Youtube :
                 span https://www.youtube.com/@watostudio4035

@@ -6,10 +6,10 @@ main
             li(v-for="a in archives" @click="modalShowControl")
                 img(:src = "a.img")
     section#section.others
-        h2 Other works
+        h2 Short films
         ul
-            li(v-for="o in others" @click="modalShowControl")
-                    img(:src = "o.img")
+            li(v-for="f in films" @click="modalShowControl")
+                    img(:src = "f.img")
     .archive-modal-wrap(:class="{show: modalShow}")
         .archive-modal-bg(@click="modalHideControl")
         .archive-modal
@@ -35,6 +35,17 @@ let archives = [
     { img : 'src/assets/img/cut09.png' },
     { img : 'src/assets/img/cut10.png' },
     { img : 'src/assets/img/cut11.png' },
+]
+
+let films = [
+    { img : 'src/assets/img/cut12.png' },
+    { img : 'src/assets/img/cut13.png' },
+    { img : 'src/assets/img/cut14.png' },
+    { img : 'src/assets/img/cut15.png' },
+    { img : 'src/assets/img/cut16.png' },
+    { img : 'src/assets/img/cut17.png' },
+    { img : 'src/assets/img/cut18.png' },
+    { img : 'src/assets/img/cut19.png' },
 ]
 
 let others = [

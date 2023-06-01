@@ -18,80 +18,105 @@ import { Autoplay } from 'swiper';
 let modules = [Autoplay];
 let slider = [
     {
-        img: './src/assets/img/cut01.png',
+        img: 'src/assets/img/cut13.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/cut14.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/cut15.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/cut16.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/eros_1.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_2.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_3.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_4.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_5.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_6.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_7.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/eros_8.png',
+        tit: 'wato.studio - Eros Game'
+    },
+    {
+        img: 'src/assets/img/shot_1.png',
         tit: 'Raffina - shot shot shot'
     },
     {
-        img: './src/assets/img/cut02.png',
+        img: 'src/assets/img/shot_2.png',
         tit: 'Raffina - shot shot shot'
     },
     {
-        img: './src/assets/img/cut03.png',
+        img: 'src/assets/img/shot_3.png',
         tit: 'Raffina - shot shot shot'
     },
     {
-        img: './src/assets/img/cut04.png',
+        img: 'src/assets/img/shot_4.png',
         tit: 'Raffina - shot shot shot'
     },
     {
-        img: './src/assets/img/cut05.png',
+        img: 'src/assets/img/shot_5.png',
         tit: 'Raffina - shot shot shot'
     },
     {
-        img: './src/assets/img/cut06.png',
+        img: 'src/assets/img/shot_6.png',
         tit: 'Raffina - shot shot shot'
     },
+    
     {
-        img: './src/assets/img/cut07.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/killing_1.png',
+        tit: 'Bae Min Jeong - The Killing'
     },
     {
-        img: './src/assets/img/cut08.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/killing_2.png',
+        tit: 'Bae Min Jeong - The Killing'
     },
     {
-        img: './src/assets/img/cut09.png',
-        tit: 'Mystic Green - Happy'
+        img: 'src/assets/img/killing_3.png',
+        tit: 'Bae Min Jeong - The Killing'
     },
     {
-        img: './src/assets/img/cut10.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/pie_1.png',
+        tit: 'Raffina - pie'
     },
     {
-        img: './src/assets/img/cut11.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/pie_2.png',
+        tit: 'Raffina - pie'
     },
     {
-        img: './src/assets/img/cut12.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/pie_3.png',
+        tit: 'Raffina - pie'
     },
     {
-        img: './src/assets/img/cut13.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut14.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut15.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut16.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut17.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut18.png',
-        tit: 'Raffina - shot shot shot'
-    },
-    {
-        img: './src/assets/img/cut19.png',
-        tit: 'Raffina - shot shot shot'
+        img: 'src/assets/img/pie_4.png',
+        tit: 'Raffina - pie'
     },
 ]
 </script>

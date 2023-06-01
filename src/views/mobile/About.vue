@@ -8,21 +8,6 @@ main
             .desc 
                 h2 We Make Culture
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asdasd asodjpaosjd pa osjdpao sjdpao sjd paosjd paosj dp oajsd poaj sdpojaspdoja spdjas pd ojaposd japs dasdpao js dpoa jsdpo ajsdpojasp dojasp odjapsodj pao sjdaopsdj apsod jpaosjdp oasj dp oasjdp oasj dpaos jdpoasjdpo asjdp oasjdpoa jsdop ajsdpoas jdpo asj dpaosjd poasjd paosjdpoa sjdp oa sjdpdo aisd hjo aishdo ias hjdoia sjd.
-    section#section.music
-        .logo
-            img(src="@/assets/img/music.png")
-        .cont
-            .desc 
-                h2 Music Production
-                p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
-        .card-wrap 
-            .card-inner
-                .card
-                .card
-                .card
-                .card
-                .card
-                .card
     section#section.film
         .logo
             img(src="@/assets/img/film.png")
@@ -38,15 +23,25 @@ main
                 .card
                 .card
                 .card
+    section#section.music
+        .logo
+            img(src="@/assets/img/music.png")
+        .cont
+            .desc 
+                h2 Music Production
+                p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
+        .card-wrap 
+            .card-inner
+                .card
+                .card
+                .card
+                .card
+                .card
+                .card
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import mobileNavBar from '../../components/mobileNavBar.vue';
-
-onMounted(() => {
-
-})
 </script>
 
 <style lang="less" scoped>
