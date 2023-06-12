@@ -24,28 +24,96 @@ let modalShow = ref(false);
 let scrollPosition = 0;
 
 let archives = [
-    { img : 'src/assets/img/cut01.png' },
-    { img : 'src/assets/img/cut02.png' },
-    { img : 'src/assets/img/cut03.png' },
-    { img : 'src/assets/img/cut04.png' },
-    { img : 'src/assets/img/cut05.png' },
-    { img : 'src/assets/img/cut06.png' },
-    { img : 'src/assets/img/cut07.png' },
-    { img : 'src/assets/img/cut08.png' },
-    { img : 'src/assets/img/cut09.png' },
-    { img : 'src/assets/img/cut10.png' },
-    { img : 'src/assets/img/cut11.png' },
+    {
+        img: 'src/assets/img/unicorn_1.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_2.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_3.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_4.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_5.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_6.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/unicorn_7.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_2.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_3.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_4.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_5.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_6.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_1.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_2.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_3.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_4.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_5.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_6.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_7.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_8.png',
+        src: 'tgUPGJBHgZc'
+    },
 ]
 
 let films = [
-    { img : 'src/assets/img/cut12.png' },
-    { img : 'src/assets/img/cut13.png' },
-    { img : 'src/assets/img/cut14.png' },
-    { img : 'src/assets/img/cut15.png' },
-    { img : 'src/assets/img/cut16.png' },
-    { img : 'src/assets/img/cut17.png' },
-    { img : 'src/assets/img/cut18.png' },
-    { img : 'src/assets/img/cut19.png' },
+    { img: 'src/assets/img/killing_1.png' },
+    { img: 'src/assets/img/killing_2.png' },
+    { img: 'src/assets/img/killing_3.png' },
+    { img: 'src/assets/img/pie_1.png' },
+    { img: 'src/assets/img/pie_2.png' },
+    { img: 'src/assets/img/pie_3.png' },
+    { img: 'src/assets/img/pie_4.png' },
 ]
 
 let others = [

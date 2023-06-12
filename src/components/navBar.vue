@@ -11,7 +11,8 @@
                     li.archive
                         a(href="/archive") ARCHIVE
     .logo
-        img(src="@/assets/img/output_sNhDIp.gif")
+        //- img(src="@/assets/img/output_sNhDIp.gif")
+        img(src="@/assets/img/wato_logo.png")
         h4 We Make Culture
     .contact(:class='{show: downDiv}')
         .info-wrap
@@ -121,7 +122,8 @@ onMounted(() => {
         background: #000;    
         transition: all 0.3s;
         font-weight: 400;
-        font-size: 1.5vw;
+        // font-size: 1.5vw;
+        font-size: 20px;
         padding: 0 32px;
         box-sizing: border-box;
         
@@ -150,7 +152,7 @@ onMounted(() => {
             }
             h5 {
                 position: absolute;
-                left: 0px;
+                right: 0px;
                 bottom: 32px;
                 font-weight: 400;
                 font-size: 1.5vw;
@@ -254,6 +256,7 @@ onMounted(() => {
                     font-size: 1.5vw;
                     line-height: 32px;
                     padding-top: 10vw;
+                    text-align: right;
                 }
             }
         }
@@ -336,7 +339,7 @@ onMounted(() => {
                     }
                 }
                 .contact {
-                    font-size: 16px;
+                    font-size: 20px;
                     padding: 70px 32px 32px 32px;
                     
                     &.show {

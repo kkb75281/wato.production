@@ -49,6 +49,6 @@ onMounted(() => {
 #app {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #006EFF 0%, #69AAFF 75%, #FFFFFF 100%);
+  background: linear-gradient(180deg, #042ecc 0%, #69AAFF 75%, #FFFFFF 100%);
 }
 </style>

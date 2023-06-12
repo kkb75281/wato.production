@@ -13,8 +13,8 @@ main
     .archive-modal-wrap(:class="{show: modalShow}")
         .archive-modal-bg(@click="modalHideControl")
         .archive-modal(v-for="a in archives")
-            iframe.video(:src="`https://www.youtube.com/embed/${a.src}?controls=0`" width="100%" height="100%" type="text/html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
-            //- iframe(width="560" height="315" src="https://www.youtube.com/embed/tgUPGJBHgZc?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
+            img(src="@/assets/img/example.png")
+            //- iframe.video(:src="`https://www.youtube.com/embed/${a.src}`" width="100%" height="100%" type="text/html" frameborder="0")
 </template>
 
 <script setup>
@@ -107,16 +107,6 @@ let archives = [
     },
 ]
 
-let films = [
-    { img: 'src/assets/img/killing_1.png' },
-    { img: 'src/assets/img/killing_2.png' },
-    { img: 'src/assets/img/killing_3.png' },
-    { img: 'src/assets/img/pie_1.png' },
-    { img: 'src/assets/img/pie_2.png' },
-    { img: 'src/assets/img/pie_3.png' },
-    { img: 'src/assets/img/pie_4.png' },
-]
-
 let others = [
     { img: 'src/assets/img/killing_1.png' },
     { img: 'src/assets/img/killing_2.png' },
@@ -154,7 +144,7 @@ main {
 
     #section {
         padding: 0 30px;
-        margin-bottom: 112px;
+        margin-bottom: 7vw;
 
         h2 {
             font-weight: 700;
@@ -207,50 +197,6 @@ main {
         }
     }
 
-    // #section {
-    //     padding: 0 30px 0 30px;
-    //     margin-bottom: 112px;
-
-    //     &.archive {
-    //         padding-top: 70px;
-    //     }
-
-    //     ul {
-    //         width: 100%;
-    //         height: 100%;
-    //         position: relative;
-
-    //         li {
-    //             display: inline-block;
-    //             width: 23.5%;
-    //             margin-right: 2%;
-    //             margin-bottom: 2%;
-    //             background-color: #d9d9d9;
-    //             box-sizing: border-box;
-    //             cursor: pointer;
-
-    //             &::after {
-    //                 content: '';
-    //                 display: block;
-    //                 padding-bottom: 100%;
-    //             }
-
-    //             &:nth-child(3n+3) {
-    //                 margin-right: 2%;
-    //             }
-
-    //             &:nth-child(4n+4) {
-    //                 margin-right: 0;
-    //             }
-
-    //             &:nth-child(12n+12) {
-    //                 margin-right: 0;
-    //             }
-    //         }
-    //     }
-
-    // }
-
     .archive-modal-wrap {
         position: fixed;
         left: 0;
@@ -279,7 +225,6 @@ main {
             left: 50%;
             top: 50%;
             width: 80%;
-            height: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
 
@@ -293,7 +238,7 @@ main {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
     main {
         #section {
             &.archive {
@@ -329,7 +274,7 @@ main {
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1440px) {
     main {
         #section {
             padding: 0 30px 0 30px;
@@ -380,6 +325,5 @@ main {
 
         }
     }
-}
-</style>
+}</style>
     

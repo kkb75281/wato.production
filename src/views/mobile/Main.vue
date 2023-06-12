@@ -16,21 +16,30 @@ import 'swiper/css';
 import { Autoplay } from 'swiper';
 
 let modules = [Autoplay];
+
 let slider = [
     {
-        img: 'src/assets/img/cut13.png',
+        img: 'src/assets/img/unicorn_1.png',
         tit: 'Dia - Unicorn'
     },
     {
-        img: 'src/assets/img/cut14.png',
+        img: 'src/assets/img/unicorn_2.png',
         tit: 'Dia - Unicorn'
     },
     {
-        img: 'src/assets/img/cut15.png',
+        img: 'src/assets/img/unicorn_3.png',
         tit: 'Dia - Unicorn'
     },
     {
-        img: 'src/assets/img/cut16.png',
+        img: 'src/assets/img/unicorn_4.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/unicorn_5.png',
+        tit: 'Dia - Unicorn'
+    },
+    {
+        img: 'src/assets/img/unicorn_6.png',
         tit: 'Dia - Unicorn'
     },
     {

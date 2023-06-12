@@ -23,12 +23,12 @@ main
                     .card
                     .card
                     .card
-    section#section.music
+    section#section.label
         .logo
-            img(src="@/assets/img/music.png")
+            img(src="@/assets/img/label.png")
         .cont
             .desc 
-                h2 Music Production
+                h2 Label Production
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
             .card-wrap 
                 .card-inner
@@ -48,24 +48,17 @@ import navBar from '../../components/navBar.vue';
 
 let animation1, animation2, scrollTrigger1, scrollTrigger2 = null;
 
-let x = 'hello';
-
 gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
     function cardMove() {
-        console.log('dddd')
-        console.log(x);
         nextTick().then(() => {
-            let music = document.querySelector('.music');
-            let musicCardInner = music.querySelector('.card-inner');
-            let cardInnerRight = music.querySelector('.desc p').getBoundingClientRect().right;
+            let label = document.querySelector('.label');
+            let labelCardInner = label.querySelector('.card-inner');
+            let cardInnerRight = label.querySelector('.desc p').getBoundingClientRect().right;
             let cardInnerPosition = window.innerWidth - cardInnerRight;
             let film = document.querySelector('.film');
             let filmCardInner = film.querySelector('.card-inner');
-
-            x = 'my'
-            console.log(x);
 
             animation2 = gsap.to(filmCardInner, {
                 x: function () {
@@ -85,48 +78,29 @@ onMounted(() => {
                 }
             });
 
-            animation1 = gsap.to(musicCardInner, {
+            animation1 = gsap.to(labelCardInner, {
                 x: function () {
-                    return -(music.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
+                    return -(label.scrollWidth - document.documentElement.clientWidth + cardInnerPosition) + "px";
                 },
                 ease: "none"
             });
 
-            console.log(animation1)
-
             scrollTrigger1 = ScrollTrigger.create({
                 scrub: true,
                 animation: animation1,
-                trigger: music,
+                trigger: label,
                 pin: true,
                 start: "center center",
                 end: function () {
-                    return "+=" + music.scrollWidth;
+                    return "+=" + label.scrollWidth;
                 }
             });
         });
     }
 
-    console.log(animation1)
-
     if (window.matchMedia('(min-width: 600px)').matches) {
         cardMove();
     }
-
-    window.matchMedia('(min-width: 600px)').addEventListener('change', (e) => {
-        if (e.matches) {
-            cardMove();
-        } else {
-            // console.log(JSON.stringify(animation1))
-            console.log(x);
-            scrollTrigger1.kill();
-            scrollTrigger2.kill();
-            animation1.kill();
-            animation2.kill();
-            animation1 = null;
-            animation2 = null;
-        }
-    });
 })
 
 onUnmounted(() => {
@@ -196,7 +170,7 @@ main {
             }
         }
 
-        &.music,
+        &.label,
         &.film {
             width: 100%;
             height: 100%;
@@ -282,7 +256,7 @@ main {
                 }
             }
 
-            &.music,
+            &.label,
             &.film {
                 margin-bottom: 100px;
 
