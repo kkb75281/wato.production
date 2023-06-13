@@ -80,21 +80,14 @@ const archiveShow = async (e) => {
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
 
-    let archiveVideoSrc = ref('');
-    let keys = [];
     let src = e.target.src.split('/');
     let title = src[src.length - 1].slice(0, -6);
 
-    for (var key in youtubeSrc) {
-        keys.push(key);
-    }
-
     await nextTick();
 
-    for(let i=0; i<keys.length; i++) {
-        if(keys[i] === title) {
-            archiveVideoSrc.value = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-            contentVideo.value.src = archiveVideoSrc.value;
+    for (var key in youtubeSrc) {
+        if(key === title) {
+            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
         }
     }
 }
@@ -109,21 +102,14 @@ const shortShow = async(e) => {
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
 
-    let shortVideoSrc = ref('');
-    let keys = [];
     let src = e.target.src.split('/');
     let title = src[src.length - 1].slice(0, -6);
 
-    for (var key in youtubeSrc) {
-        keys.push(key);
-    }
-
     await nextTick();
 
-    for(let i=0; i<keys.length; i++) {
-        if(keys[i] === title) {
-            shortVideoSrc.value = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-            contentVideo.value.src = shortVideoSrc.value;
+    for (var key in youtubeSrc) {
+        if(key === title) {
+            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
         }
     }
 }
