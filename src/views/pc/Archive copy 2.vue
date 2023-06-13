@@ -3,129 +3,128 @@ main
     navBar
     section#section.archive
         ul
-            li(v-for="a in archives" @click="archiveShow")
+            li(v-for="a in archives" @click="modalShowControl")
                 img(:src = "a.img")
-    section#section.shorts
+    section#section.others
         h2 Short films
         ul
-            li(v-for="s in shorts" @click="shortShow")
-                img(:src = "s.img")    
-    .modalWrap(v-if="modalShow")
-        .modalBg(@click="modalHideControl")
-        .modalCont.archive(v-if="archiveModal") 
-            //:src="archiveVideoSrc" 
-            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
-        .modalCont.short(v-else="shortModal") 
-            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
-        
+            li(v-for="f in films" @click="modalShowControl")
+                img(:src = "f.img")    
+    .archive-modal-wrap(:class="{show: modalShow}")
+        .archive-modal-bg(@click="modalHideControl")
+        .archive-modal(v-for="a in archives")
+            iframe.video(:src="`https://www.youtube.com/embed/${a.src}?controls=0`" width="100%" height="100%" type="text/html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
+            //- iframe(width="560" height="315" src="https://www.youtube.com/embed/tgUPGJBHgZc?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref } from 'vue';
 import navBar from '../../components/navBar.vue';
 
-let contentVideo = ref(null);
 let modalShow = ref(false);
-let archiveModal = ref(false);
-let shortModal = ref(false);
 let scrollPosition = 0;
 
 let archives = [
-    { img: 'src/assets/img/unicorn_1.png' },
-    { img: 'src/assets/img/unicorn_2.png' },
-    { img: 'src/assets/img/unicorn_3.png' },
-    { img: 'src/assets/img/unicorn_4.png' },
-    { img: 'src/assets/img/unicorn_5.png' },
-    { img: 'src/assets/img/shot_1.png' },
-    { img: 'src/assets/img/shot_2.png' },
-    { img: 'src/assets/img/shot_3.png' },
-    { img: 'src/assets/img/shot_4.png' },
-    { img: 'src/assets/img/shot_5.png' },
-    { img: 'src/assets/img/shot_6.png' },
-    { img: 'src/assets/img/eros_1.png' },
-    { img: 'src/assets/img/eros_2.png' },
-    { img: 'src/assets/img/eros_3.png' },
-    { img: 'src/assets/img/eros_4.png' },
-    { img: 'src/assets/img/eros_5.png' },
-    { img: 'src/assets/img/eros_6.png' },
-    { img: 'src/assets/img/eros_7.png' },
-    { img: 'src/assets/img/eros_8.png' },
+    {
+        img: 'src/assets/img/unicorn_1.png',
+        src: '0QqAkRV0x_I'
+    },
+    {
+        img: 'src/assets/img/unicorn_2.png',
+        src: '0QqAkRV0x_I'
+    },
+    {
+        img: 'src/assets/img/unicorn_3.png',
+        src: '0QqAkRV0x_I'
+    },
+    {
+        img: 'src/assets/img/unicorn_4.png',
+        src: '0QqAkRV0x_I'
+    },
+    {
+        img: 'src/assets/img/unicorn_5.png',
+        src: '0QqAkRV0x_I'
+    },
+    {
+        img: 'src/assets/img/shot_2.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_3.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_4.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_5.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/shot_6.png',
+        src: 'tgUPGJBHgZc'
+    },
+    {
+        img: 'src/assets/img/eros_1.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_2.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_3.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_4.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_5.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_6.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_7.png',
+        src: 'X7xz7qAyQMg'
+    },
+    {
+        img: 'src/assets/img/eros_8.png',
+        src: 'X7xz7qAyQMg'
+    },
 ]
 
-let shorts = [
-    { img: 'src/assets/img/killing_1.png' },
-    { img: 'src/assets/img/killing_2.png' },
-    { img: 'src/assets/img/killing_3.png' },
+let films = [
+    { 
+        img: 'src/assets/img/killing_1.png',
+        src: 'eDN8PYmeyP8' 
+    },
+    { 
+        img: 'src/assets/img/killing_2.png',
+        src: 'eDN8PYmeyP8' 
+    },
+    { 
+        img: 'src/assets/img/killing_3.png',
+        src: 'eDN8PYmeyP8' 
+    },  
     { img: 'src/assets/img/pie_1.png' },
     { img: 'src/assets/img/pie_2.png' },
     { img: 'src/assets/img/pie_3.png' },
     { img: 'src/assets/img/pie_4.png' },
 ]
 
-let youtubeSrc = {
-    unicorn: '0QqAkRV0x_I',
-    shot: 'tgUPGJBHgZc',
-    eros: 'X7xz7qAyQMg',
-    killing: 'eDN8PYmeyP8',
-    pie: 'ZxHEzXe_khY',
-}
-
-const archiveShow = async (e) => {
+function modalShowControl() {
     modalShow.value = true;
-    archiveModal.value = true;
-
     scrollPosition = window.pageYOffset;
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
-
-    let archiveVideoSrc = ref('');
-    let keys = [];
-    let src = e.target.src.split('/');
-    let title = src[src.length - 1].slice(0, -6);
-
-    for (var key in youtubeSrc) {
-        keys.push(key);
-    }
-
-    await nextTick();
-
-    for(let i=0; i<keys.length; i++) {
-        if(keys[i] === title) {
-            archiveVideoSrc.value = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-            contentVideo.value.src = archiveVideoSrc.value;
-        }
-    }
-}
-
-const shortShow = async(e) => {
-    modalShow.value = true;
-    shortModal.value = true;
-
-    scrollPosition = window.pageYOffset;
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.width = '100%';
-
-    let shortVideoSrc = ref('');
-    let keys = [];
-    let src = e.target.src.split('/');
-    let title = src[src.length - 1].slice(0, -6);
-
-    for (var key in youtubeSrc) {
-        keys.push(key);
-    }
-
-    await nextTick();
-
-    for(let i=0; i<keys.length; i++) {
-        if(keys[i] === title) {
-            shortVideoSrc.value = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-            contentVideo.value.src = shortVideoSrc.value;
-        }
-    }
 }
 
 function modalHideControl() {
@@ -243,15 +242,19 @@ main {
 
     // }
 
-    .modalWrap {
+    .archive-modal-wrap {
         position: fixed;
         left: 0;
-        top: 0;
+        top: -99999px;
         width: 100vw;
         height: 100vh;
         z-index: 999999;
 
-        .modalBg {
+        &.show {
+            top: 0;
+        }
+
+        .archive-modal-bg {
             position: absolute;
             left: 0;
             top: 0;
@@ -262,18 +265,20 @@ main {
             z-index: 1;
         }
 
-        .modalCont {
+        .archive-modal {
             position: absolute;
             left: 50%;
             top: 50%;
             width: 80%;
-            height: 60%;
+            height: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
 
-            .video {
+            // .video {
+            //     width: 100%;
+            // }
+            img {
                 width: 100%;
-                height: 100%;
             }
         }
     }
@@ -307,8 +312,8 @@ main {
             }
         }
 
-        .modalWrap {
-            .modalCont {
+        .archive-modal-wrap {
+            .archive-modal {
                 width: 100%;
             }
         }
