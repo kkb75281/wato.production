@@ -114,7 +114,7 @@ const shortShow = async(e) => {
     }
 }
 
-function modalHideControl() {
+const modalHideControl = () => {
     modalShow.value = false;
     document.body.style.removeProperty('overflow');
     document.body.style.removeProperty('position');

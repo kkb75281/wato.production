@@ -3,110 +3,55 @@ main
     mobileNavBar
     section#section.archive
         ul
-            li(v-for="a in archives" @click="modalShowControl")
+            li(v-for="a in archives" @click="archiveShow")
                 img(:src = "a.img")
-    section#section.others
+    section#section.shorts
         h2 Short films
         ul
-            li(v-for="f in films" @click="modalShowControl")
-                    img(:src = "f.img")
-    .archive-modal-wrap(:class="{show: modalShow}")
-        .archive-modal-bg(@click="modalHideControl")
-        .archive-modal
-            img(src="@/assets/img/example.png")
+            li(v-for="s in shorts" @click="shortShow")
+                img(:src = "s.img")    
+    .modalWrap(v-if="modalShow")
+        .modalBg(@click="modalHideControl")
+        .modalCont.archive(v-if="archiveModal") 
+            //:src="archiveVideoSrc" 
+            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
+        .modalCont.short(v-else="shortModal") 
+            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 import mobileNavBar from '../../components/mobileNavBar.vue';
 
+let contentVideo = ref(null);
 let modalShow = ref(false);
+let archiveModal = ref(false);
+let shortModal = ref(false);
 let scrollPosition = 0;
 
 let archives = [
-    {
-        img: 'src/assets/img/unicorn_1.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_2.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_3.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_4.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_5.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_6.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/unicorn_7.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/shot_2.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/shot_3.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/shot_4.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/shot_5.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/shot_6.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_1.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_2.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_3.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_4.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_5.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_6.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_7.png',
-        src: 'tgUPGJBHgZc'
-    },
-    {
-        img: 'src/assets/img/eros_8.png',
-        src: 'tgUPGJBHgZc'
-    },
+    { img: 'src/assets/img/unicorn_1.png' },
+    { img: 'src/assets/img/unicorn_2.png' },
+    { img: 'src/assets/img/unicorn_3.png' },
+    { img: 'src/assets/img/unicorn_4.png' },
+    { img: 'src/assets/img/unicorn_5.png' },
+    { img: 'src/assets/img/shot_1.png' },
+    { img: 'src/assets/img/shot_2.png' },
+    { img: 'src/assets/img/shot_3.png' },
+    { img: 'src/assets/img/shot_4.png' },
+    { img: 'src/assets/img/shot_5.png' },
+    { img: 'src/assets/img/shot_6.png' },
+    { img: 'src/assets/img/eros_1.png' },
+    { img: 'src/assets/img/eros_2.png' },
+    { img: 'src/assets/img/eros_3.png' },
+    { img: 'src/assets/img/eros_4.png' },
+    { img: 'src/assets/img/eros_5.png' },
+    { img: 'src/assets/img/eros_6.png' },
+    { img: 'src/assets/img/eros_7.png' },
+    { img: 'src/assets/img/eros_8.png' },
 ]
 
-let films = [
+let shorts = [
     { img: 'src/assets/img/killing_1.png' },
     { img: 'src/assets/img/killing_2.png' },
     { img: 'src/assets/img/killing_3.png' },
@@ -116,27 +61,59 @@ let films = [
     { img: 'src/assets/img/pie_4.png' },
 ]
 
-let others = [
-    { img : 'src/assets/img/cut12.png' },
-    { img : 'src/assets/img/cut13.png' },
-    { img : 'src/assets/img/cut14.png' },
-    { img : 'src/assets/img/cut15.png' },
-    { img : 'src/assets/img/cut16.png' },
-    { img : 'src/assets/img/cut17.png' },
-    { img : 'src/assets/img/cut18.png' },
-    { img : 'src/assets/img/cut19.png' },
-]
+let youtubeSrc = {
+    unicorn: '0QqAkRV0x_I',
+    shot: 'tgUPGJBHgZc',
+    eros: 'X7xz7qAyQMg',
+    killing: 'eDN8PYmeyP8',
+    pie: 'ZxHEzXe_khY',
+}
 
-function modalShowControl() {
+const archiveShow = async (e) => {
     modalShow.value = true;
+    archiveModal.value = true;
+
     scrollPosition = window.pageYOffset;
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
+
+    let src = e.target.src.split('/');
+    let title = src[src.length - 1].slice(0, -6);
+
+    await nextTick();
+
+    for (var key in youtubeSrc) {
+        if(key === title) {
+            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
+        }
+    }
 }
 
-function modalHideControl() {
+const shortShow = async(e) => {
+    modalShow.value = true;
+    shortModal.value = true;
+
+    scrollPosition = window.pageYOffset;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = '100%';
+
+    let src = e.target.src.split('/');
+    let title = src[src.length - 1].slice(0, -6);
+
+    await nextTick();
+
+    for (var key in youtubeSrc) {
+        if(key === title) {
+            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
+        }
+    }
+}
+
+const modalHideControl = () => {
     modalShow.value = false;
     document.body.style.removeProperty('overflow');
     document.body.style.removeProperty('position');
@@ -195,18 +172,15 @@ main {
         }
     }
 
-    .archive-modal-wrap {
+    .modalWrap {
         position: fixed;
         left: 0;
-        top: -99999px;
+        top: 0;
         width: 100vw;
         height: 100vh;
         z-index: 999999;
 
-        &.show {
-            top: 0;
-        }
-        .archive-modal-bg {
+        .modalBg {
             position: absolute;
             left: 0;
             top: 0;
@@ -216,16 +190,18 @@ main {
             cursor: pointer;
             z-index: 1;
         }
-        .archive-modal {
+        .modalCont {
             position: absolute;
             left: 50%;
             top: 50%;
             width: 100%;
+            height: 70%;
             transform: translate(-50%, -50%);
             z-index: 2;
 
-            img {
+            .video {
                 width: 100%;
+                height: 100%;
             }
         }
     }

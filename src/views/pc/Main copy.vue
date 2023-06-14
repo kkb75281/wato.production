@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main.slideMain
     navBar
     swiper.mySwiper(:navigation="true" :modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}")
         swiper-slide(v-for="s in slider")
@@ -122,13 +122,15 @@ let slider = [
 ]
 </script>
 <style lang="less">
-main {
+main.slideMain {
     width: 100%;
     height: 100%;
-    padding-bottom: 20vw;
+    // padding-bottom: 20vw;
 
     .mySwiper {
+        height: calc(100vh - 317px);
         .swiper-wrapper {
+            height: 100%;
             width: 100%;
             .swiper-slide {
                 position: relative;
@@ -137,7 +139,9 @@ main {
                 img {
                     width: 100%;
                     // height: 780px;
-                    height: 57vw;
+                    // height: 57vw;
+                    height: 100%;
+                    display: block;
                     overflow: hidden;
                     object-fit: cover;
                 }
