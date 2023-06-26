@@ -21,7 +21,7 @@ main
 </template>
 
 <script setup>
-import { ref, nextTick, onBeforeMount } from 'vue';
+import { ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import navBar from '../../components/navBar.vue';
 
@@ -32,7 +32,6 @@ let modalShow = ref(false);
 let archiveModal = ref(false);
 let shortModal = ref(false);
 let scrollPosition = 0;
-let currentURL = location.href;
 
 let archives = [
     { img: 'src/assets/img/unicorn_1.png' },
@@ -90,15 +89,13 @@ const archiveShow = async (e) => {
     await nextTick();
 
     for (var key in youtubeSrc) {
-        if (key === title) {
-            let query = { id: title };
-            router.push({ query });
+        if(key === title) {
             contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
         }
     }
 }
 
-const shortShow = async (e) => {
+const shortShow = async(e) => {
     modalShow.value = true;
     shortModal.value = true;
 
@@ -114,7 +111,7 @@ const shortShow = async (e) => {
     await nextTick();
 
     for (var key in youtubeSrc) {
-        if (key === title) {
+        if(key === title) {
             let query = { id: title };
             router.push({ query });
             contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
@@ -129,33 +126,7 @@ const modalHideControl = () => {
     document.body.style.removeProperty('top');
     document.body.style.removeProperty('width');
     window.scrollTo(0, scrollPosition);
-
-    // 이렇게 하면 없어지기는 하는데 새로고침하면 주소창에 타이틀은 없어지지만 다시 동영상 나옴
-    if (typeof (history.pushState) == 'function') {
-        history.pushState({}, null, location.pathname);
-    }
-
-    // 타이틀 안 없어짐
-    // currentURL.replace(/[\#]+[\w]*/g, '');
-    // console.log(currentURL)
 }
-
-onBeforeMount(async () => {
-    // if (currentURL = "/archive#unicorn") {
-    //     modalShow.value = true;
-    //     archiveModal.value = true;
-
-    //     scrollPosition = window.pageYOffset;
-    //     document.body.style.overflow = 'hidden';
-    //     document.body.style.position = 'fixed';
-    //     document.body.style.top = `-${scrollPosition}px`;
-    //     document.body.style.width = '100%';
-
-    //     await nextTick();
-
-    //     contentVideo.value.src = 'https://www.youtube.com/embed/0QqAkRV0x_I?controls=0';
-    // }
-})
 </script>
 
 <style lang="less" scoped>

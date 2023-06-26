@@ -1,10 +1,11 @@
 <template lang="pug">
-main
+main.mainSwiper
     navBar
-    swiper.mySwiper(:navigation="true" :modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}")
+    swiper.mySwiper(v-if="renderingSwiper" :navigation="true" :modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}" :style="`height : ${getHight}`")
         swiper-slide(v-for="s in slider")
-            img(:src = "s.img")
-            h6 {{ s.tit }}
+            a(:href="goArchive")
+                img(:src = "s.img" @click="showVideo")
+                h6 {{ s.tit }}
 </template>
 <script setup>
 import navBar from '../../components/navBar.vue';
@@ -12,7 +13,9 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper';
+import { onMounted, ref, nextTick } from 'vue';
 
+// let mainNavBar = ref(null);
 let modules = [Autoplay, Navigation];
 let slider = [
     {
@@ -119,13 +122,32 @@ let slider = [
         img: 'src/assets/img/pie_4.png',
         tit: 'Raffina - pie'
     },
-]
+];
+let renderingSwiper = ref(false);
+let goArchive = ref('');
+let getHight;
+
+nextTick(() => {
+    let top = document.querySelector('.top');
+    let mainNavBarHeight = top.clientHeight;
+    getHight = "calc(100vh - " + mainNavBarHeight + "px)";
+}).then(() => {
+    renderingSwiper.value = true;
+})
+
+function showVideo(e) {
+    let src = e.target.src.split('/');
+    let title = src[src.length - 1].slice(0, -6);
+    // let query = { id: title };
+    // router.push({ query });
+    // goArchive.value = `/archive#${title}`;
+}
 </script>
 <style lang="less">
-main {
+main.mainSwiper {
     width: 100%;
     height: 100%;
-    padding-bottom: 20vw;
+    // padding-bottom: 20vw;
 
     .mySwiper {
         .swiper-wrapper {
@@ -133,20 +155,26 @@ main {
             .swiper-slide {
                 position: relative;
                 width: 100%;
-                
-                img {
-                    width: 100%;
-                    // height: 780px;
-                    height: 57vw;
-                    overflow: hidden;
-                    object-fit: cover;
-                }
-                h6 {
-                    position: absolute;
-                    left: 32px;
-                    bottom: 32px;
-                    font-weight: 400;
-                    font-size: 1.75vw;
+                height: 100%;
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        object-fit: cover;
+                        cursor: pointer;
+                    }
+                    h6 {
+                        position: absolute;
+                        left: 32px;
+                        bottom: 32px;
+                        font-weight: 400;
+                        font-size: 1.75vw;
+                    }
                 }
             }
         }
