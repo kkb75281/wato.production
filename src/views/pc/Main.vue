@@ -14,6 +14,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper';
 import { onMounted, ref, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 // let mainNavBar = ref(null);
 let modules = [Autoplay, Navigation];
@@ -139,8 +142,8 @@ function showVideo(e) {
     let src = e.target.src.split('/');
     let title = src[src.length - 1].slice(0, -6);
     // let query = { id: title };
-    // router.push({ query });
-    // goArchive.value = `/archive#${title}`;
+    // router.push({query});
+    goArchive.value = `/archive?id=${title}`;
 }
 </script>
 <style lang="less">

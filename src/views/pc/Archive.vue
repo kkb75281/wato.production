@@ -9,7 +9,7 @@ main
         h2 Short films
         ul
             li(v-for="s in shorts" @click="shortShow")
-                img(:src = "s.img")    
+                img(:src = "s.img") 
     .modalWrap(v-if="modalShow")
         .modalBg(@click="modalHideControl")
         .modalCont.archive(v-if="archiveModal") 
