@@ -3,7 +3,7 @@ main.mainSwiper
     navBar
     swiper.mySwiper(v-if="renderingSwiper" :navigation="true" :modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}" :style="`height : ${getHight}`")
         swiper-slide(v-for="s in slider")
-            a(:href="goArchive")
+            router-link(:to="goArchive")
                 img(:src = "s.img" @click="showVideo")
                 h6 {{ s.tit }}
 </template>
