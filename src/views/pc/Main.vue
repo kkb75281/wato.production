@@ -8,18 +8,21 @@ main.mainSwiper
                 h6 {{ s.tit }}
 </template>
 <script setup>
-import navBar from '../../components/navBar.vue';
+import navBar from '@/components/navBar.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper';
-import { onMounted, ref, nextTick } from 'vue';
+import { ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+let renderingSwiper = ref(false);
+let goArchive = ref('');
+let getHight;
 
-// let mainNavBar = ref(null);
 let modules = [Autoplay, Navigation];
+
 let slider = [
     {
         img: 'src/assets/img/unicorn_1.png',
@@ -126,9 +129,6 @@ let slider = [
         tit: 'Raffina - pie'
     },
 ];
-let renderingSwiper = ref(false);
-let goArchive = ref('');
-let getHight;
 
 nextTick(() => {
     let top = document.querySelector('.top');
@@ -141,8 +141,7 @@ nextTick(() => {
 function showVideo(e) {
     let src = e.target.src.split('/');
     let title = src[src.length - 1].slice(0, -6);
-    // let query = { id: title };
-    // router.push({query});
+
     goArchive.value = `/archive?id=${title}`;
 }
 </script>
@@ -155,6 +154,7 @@ main.mainSwiper {
     .mySwiper {
         .swiper-wrapper {
             width: 100%;
+
             .swiper-slide {
                 position: relative;
                 width: 100%;
@@ -171,6 +171,7 @@ main.mainSwiper {
                         object-fit: cover;
                         cursor: pointer;
                     }
+
                     h6 {
                         position: absolute;
                         left: 32px;
@@ -181,27 +182,27 @@ main.mainSwiper {
                 }
             }
         }
+
         .swiper-button-next {
             width: 90px;
             background: url(src/assets/img/next-arrow.png) no-repeat;
             background-size: 50% auto;
             background-position: center center;
-            
+
             &::after {
                 display: none !important;
             }
         }
-    
+
         .swiper-button-prev {
             width: 90px;
             background: url(src/assets/img/prev-arrow.png) no-repeat;
             background-size: 50% auto;
             background-position: center center;
-    
+
             &::after {
                 display: none !important;
             }
         }
     }
-}
-</style>
+}</style>

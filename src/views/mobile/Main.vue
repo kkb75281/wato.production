@@ -6,16 +6,18 @@ main
         h4 We Make Culture
     swiper.mySwiper(:modules="modules" :loop="true" :autoplay="{delay: 2500, disableOnInteraction: false}")
         swiper-slide(v-for="s in slider")
-            img(:src = "s.img")
-            //- h6 {{ s.tit }}
+            router-link(:to="goArchive")
+                img(:src = "s.img" @click="showVideo")
 </template>
 <script setup>
-import mobileNavBar from '../../components/mobileNavBar.vue';
+import mobileNavBar from '@/components/mobileNavBar.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import { Autoplay } from 'swiper';
+import { ref } from 'vue';
 
 let modules = [Autoplay];
+let goArchive = ref('');
 
 let slider = [
     {
@@ -36,10 +38,6 @@ let slider = [
     },
     {
         img: 'src/assets/img/unicorn_5.png',
-        tit: 'Dia - Unicorn'
-    },
-    {
-        img: 'src/assets/img/unicorn_6.png',
         tit: 'Dia - Unicorn'
     },
     {
@@ -128,6 +126,13 @@ let slider = [
         tit: 'Raffina - pie'
     },
 ]
+
+function showVideo(e) {
+    let src = e.target.src.split('/');
+    let title = src[src.length - 1].slice(0, -6);
+
+    goArchive.value = `/archive?id=${title}`;
+}
 </script>
 <style lang="less" scoped>
 main {

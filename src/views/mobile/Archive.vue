@@ -3,30 +3,27 @@ main
     mobileNavBar
     section#section.archive
         ul
-            li(v-for="a in archives" @click="archiveShow")
+            li(v-for="a in archives" @click="clickVideo")
                 img(:src = "a.img")
     section#section.shorts
         h2 Short films
         ul
-            li(v-for="s in shorts" @click="shortShow")
+            li(v-for="s in shorts" @click="clickVideo")
                 img(:src = "s.img")    
-    .modalWrap(v-if="modalShow")
-        .modalBg(@click="modalHideControl")
-        .modalCont.archive(v-if="archiveModal") 
-            //:src="archiveVideoSrc" 
-            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
-        .modalCont.short(v-else="shortModal") 
-            iframe.video(ref='contentVideo' type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
+    sui-overlay#overlay(ref="overlay" @click="modalHideControl" style="background: rgba(0, 0, 0, 0.6);")
+        .modalCont.archive(style="width:80vw; height:60vh;")
+            iframe.video(ref='videoIframe' style="width:100%; height:100%;" type="text/html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen)
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import mobileNavBar from '../../components/mobileNavBar.vue';
 
-let contentVideo = ref(null);
-let modalShow = ref(false);
-let archiveModal = ref(false);
-let shortModal = ref(false);
+const router = useRouter();
+
+let videoIframe = ref(null);
+let overlay = ref(null);
 let scrollPosition = 0;
 
 let archives = [
@@ -69,58 +66,51 @@ let youtubeSrc = {
     pie: 'ZxHEzXe_khY',
 }
 
-const archiveShow = async (e) => {
-    modalShow.value = true;
-    archiveModal.value = true;
-
+const preventScroll = () => {
     scrollPosition = window.pageYOffset;
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
-
-    let src = e.target.src.split('/');
-    let title = src[src.length - 1].slice(0, -6);
-
-    await nextTick();
-
-    for (var key in youtubeSrc) {
-        if(key === title) {
-            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-        }
-    }
 }
 
-const shortShow = async(e) => {
-    modalShow.value = true;
-    shortModal.value = true;
-
-    scrollPosition = window.pageYOffset;
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.width = '100%';
-
+const clickVideo = (e) => {
     let src = e.target.src.split('/');
     let title = src[src.length - 1].slice(0, -6);
+    
+    let query = { id: title };
+    router.push({query});
+    videoShow(title);
+}
 
+const videoShow = async (key) => {
     await nextTick();
-
-    for (var key in youtubeSrc) {
-        if(key === title) {
-            contentVideo.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[title] + '?controls=0';
-        }
-    }
+    preventScroll();
+    overlay.value.open();
+    videoIframe.value.src = 'https://www.youtube.com/embed/' + youtubeSrc[key] + '?controls=0';
 }
 
 const modalHideControl = () => {
-    modalShow.value = false;
     document.body.style.removeProperty('overflow');
     document.body.style.removeProperty('position');
     document.body.style.removeProperty('top');
     document.body.style.removeProperty('width');
     window.scrollTo(0, scrollPosition);
+
+    router.push('archive');
+
+    overlay.value.close();
 }
+
+watch(() => {
+    let currentURL = window.location.href;
+
+    for (var key in youtubeSrc) {
+        if (currentURL.includes(key)) {
+            videoShow(key);
+        }
+    }
+});
 </script>
 
 <style lang="less" scoped>
