@@ -104,7 +104,7 @@ const modalHideControl = () => {
 
 watch(() => {
     let currentURL = window.location.href;
-
+    console.log('rrrrr')
     for (var key in youtubeSrc) {
         if (currentURL.includes(key)) {
             videoShow(key);
