@@ -17,49 +17,37 @@ main
                     | 각각의 프로젝트에 참여하는 아티스트들의 다양한 장르와 스타일을 존중하며, 독창성에 최우선을 두고 있습니다. 서로의 고유한 아이디어에서 영감을 얻어내고 음악과 영상의 합으로 스토리텔링을 완성하며, 감성과 공감을 이끌어내는 컨텐츠 생산을 핵심 가치로 두고 있습니다.
     section#section.film
         .logo
-            img(src="@/assets/img/film.png")
+            img(src="@/assets/img/film_logo.png")
         .cont
             .desc 
                 h2 Film Production
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
             .card-wrap 
                 .card-inner
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
+                    .card(v-for="number in 17" :key="number" class="filmItem")
+                        img(:src="`src/assets/img/film/${number}.jpeg`" alt="Film Image")
     section#section.music
         .logo
-            img(src="@/assets/img/music.png")
+            img(src="@/assets/img/music_logo.png")
         .cont
             .desc 
                 h2 Music Production
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
             .card-wrap 
                 .card-inner
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
+                    .card(v-for="number in 5" :key="number" class="musicItem")
+                        img(:src="`src/assets/img/music/${number}.jpeg`" alt="Music Image")
     section#section.studio
         .logo
-            img(src="@/assets/img/music.png")
+            img(src="@/assets/img/stage_logo.png")
         .cont
             .desc 
                 h2 Studio Production
                 p dasdasdaas dasdasdasdasdasd asd asdasd asdas dasdas dasdasdo. asdpo ajsdpoajsp dojaspdoja pso djaps odjpasod jpaosjdpaosjd pao sjdpaosjdp asd
             .card-wrap 
                 .card-inner
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
-                    .card
+                    .card(v-for="number in 12" :key="number" class="stageItem")
+                        img(:src="`src/assets/img/stage/${number}.png`" alt="Stage Image")
 </template>
 
 <script setup>
@@ -251,9 +239,16 @@ main {
                             height: 20vw;
                             background-color: #D9D9D9;
                             margin-right: 24px;
+                            overflow: hidden;
 
                             &:last-child {
                                 margin-right: 0;
+                            }
+
+                            img {
+                                width: 20vw;
+                                height: 20vw;
+                                object-fit: cover;
                             }
                         }
                     }
@@ -319,6 +314,11 @@ main {
                                 width: 280px;
                                 height: 280px;
                                 margin-right: 24px;
+
+                                img {
+                                    width: 280px;
+                                    height: 280px;
+                                }
                             }
                         }
 
